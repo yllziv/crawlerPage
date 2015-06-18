@@ -1,0 +1,72 @@
+.summaryHolder {
+    margin: 15px 0;
+}
+
+.summaryHolder a {
+    font-size: 12px;
+    cursor: pointer;
+    margin: 0 5px;
+    color: #333;
+}
+
+.summaryHolder a:hover {
+    background-color: #222;
+    color: #fff;
+}
+
+.summaryHolder a.jp-previous { margin-right: 15px; }
+.summaryHolder a.jp-next { margin-left: 15px; }
+
+.summaryHolder a.jp-current, a.jp-current:hover {
+    color: #FF4242;
+    font-weight: bold;
+}
+
+.summaryHolder a.jp-disabled, a.jp-disabled:hover {
+    color: #bbb;
+}
+
+.summaryHolder a.jp-current, a.jp-current:hover,
+.summaryHolder a.jp-disabled, a.jp-disabled:hover {
+    cursor: default;
+    background: none;
+}
+
+.summaryHolder span { margin: 0 5px; }
+
+
+.detailHolder {
+    margin: 15px 0;
+}
+
+.detailHolder a {
+    font-size: 12px;
+    cursor: pointer;
+    margin: 0 5px;
+    color: #333;
+}
+
+.detailHolder a:hover {
+    background-color: #222;
+    color: #fff;
+}
+
+.detailHolder a.jp-previous { margin-right: 15px; }
+.detailHolder a.jp-next { margin-left: 15px; }
+
+.detailHolder a.jp-current, a.jp-current:hover {
+    color: #FF4242;
+    font-weight: bold;
+}
+
+.detailHolder a.jp-disabled, a.jp-disabled:hover {
+    color: #bbb;
+}
+
+.detailHolder a.jp-current, a.jp-current:hover,
+.detailHolder a.jp-disabled, a.jp-disabled:hover {
+    cursor: default;
+    background: none;
+}
+
+.detailHolder span { margin: 0 5px; }

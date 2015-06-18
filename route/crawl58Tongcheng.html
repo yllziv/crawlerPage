@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>首页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="../css/initi.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/tableAction.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css"/>
+    <link rel="stylesheet" href="../css/jPages.css">
+    <script type="text/javascript" src="../lib/jquery-2.1.1.js"></script>
+    <script charset="gb2312" src="../js/crawl58Tongcheng/jPages_test.js"></script>
+    <script type="text/javascript" src="../lib/laydate.js"></script>
+
+    <script src="../lib/jPages.js"></script>
+    <script charset="gb2312" src="../js/crawl58Tongcheng/getInfo.js"></script>
+
+
+</head>
+<body>
+<div class="main">
+    <div class="header">
+        <div class="help">
+            <a href="">联系我们</a> |
+            <a href="">使用帮助</a> |
+            <a href="">问题反馈</a>
+        </div>
+    </div>
+    <div class="topbar">
+        <ul>
+            <li><a>舆情分析</a></li>
+            <li><a class="clicked" href="index.html">销赃分析</a></li>
+            <li><a>重点人员分析</a></li>
+            <li><a>舆情查询</a></li>
+            <li><a>舆情可视化</a></li>
+            <li><a>人员轨迹分析</a></li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-md-1" alt="大类" style="border:1px solid #e1e1e1; height: 600px">
+        <div class="row" alt="分类查询" style="padding-top: 40px; width: 100px;height: 150px ;">
+            <a href="#" role="button">
+                <img border="0" src="../images/xinxichaxun.png" style="padding-left: 30px"/>
+                <label style="padding-left: 40px;">分类查询</label>
+            </a>
+        </div>
+        <div class="row" alt="主题分析" style="padding-top: 40px; width: 100px;height: 150px ;">
+            <a href="#" role="button">
+                <img border="0" src="../images/zhutifenxi.png" style="padding-left: 30px;"/>
+                <label style="padding-left: 40px;">主题分析</label>
+            </a>
+        </div>
+        <div class="row" alt="热点分析" style="padding-top: 40px; width: 100px;height: 150px ;">
+            <a href="#" role="button">
+                <img border="0" src="../images/redianfenxi.png" style="padding-left: 30px"/>
+                <label style="padding-left: 40px;">热点分析</label>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="col-md-8">
+        <div class="col-md-4">
+            <div class="table-responsive">
+                <label style="align-content: center;padding-top: 10px">销赃分析</label>
+                <table class="table table-bordered" id="summaryInfo">
+                    <thead>
+                    <tr>
+                        <th><input type='button' style='background-color: transparent; border: 0; background: none'
+                                   value="卖家姓名"></th>
+                        <th>卖家手机号</th>
+                        <th>发布商品数量</th>
+                    </tr>
+                    </thead>
+                    <tbody id="summaryList"></tbody>
+                </table>
+                <div class="summaryHolder"></div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="table-responsive">
+                <label style="align-content: center;padding-top: 10px">详细信息</label>
+                <table class="table table-bordered" id="detailInfo">
+                    <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>图片</th>
+                        <th>区域</th>
+                        <th>卖家姓名</th>
+                        <th>卖家手机号</th>
+                        <th>发布日期</th>
+                        <th>类别</th>
+                        <th>详细信息</th>
+                    </tr>
+                    </thead>
+                    <tbody id="detailList"></tbody>
+                </table>
+                <div class="detailHolder"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3" style="border:1px solid #e1e1e1; height: 600px">
+        <div class="row" alt="卖家" style="height: 80px">
+            <div class="col-md-12" style="padding-top: 20px; padding-bottom: 5px">
+                <label>卖家类别</label>
+            </div>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox1" value="option1" checked> 个人
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox2" value="option2"> 商家
+            </label>
+        </div>
+        <div alt="网站">
+            <div class="row" style="height: 80px">
+                <div class="col-md-12" style="padding-top: 20px; padding-bottom: 5px">
+                    <label>网站</label>
+                </div>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="58tongcheng" value="option1" checked> 58同城
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="ganjiwang" value="option2" disabled> 赶集网
+                </label>
+            </div>
+            <div class="row">
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="baixingwang" value="option2" disabled> 百姓网
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="soufangwang" value="option2" disabled> 搜房网
+                </label>
+            </div>
+            <div class="row" style="padding-top: 10px">
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="weibo" value="option2" disabled> 新浪微博
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="tieba" value="option2" disabled> 百度贴吧
+                </label>
+            </div>
+        </div>
+
+        <div alt="销赃类别">
+            <div class="row" style="height: 80px">
+                <div class="col-md-12" style="padding-top: 20px; padding-bottom: 5px">
+                    <label>销赃类别</label>
+                </div>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="motuoche" value="option1" checked> 摩托车
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="diandongche" value="option2"> 电动车
+                </label>
+            </div>
+            <div class="row">
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="zixingche" value="option2"> 自行车
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="bijiben" value="option2" disabled> 笔记本
+                </label>
+            </div>
+            <div class="row" style="padding-top: 10px">
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="ershoushouji" value="option2" disabled> 二手手机
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="pingbandiannao" value="option2" disabled> 平板电脑
+                </label>
+            </div>
+        </div>
+        <div class="row" alt="起始时间" style="height: 80px">
+            <div class="col-md-12" style="padding-top: 20px; padding-bottom: 5px">
+                <label>起始时间</label>
+                <br/>
+                <label class="checkbox-inline">
+                    <input id="startTime" placeholder="开始时间" class="laydate-icon" onClick=clickStartTime()>
+                </label>
+            </div>
+        </div>
+        <div class="row" alt="终止时间" style="height: 80px">
+            <div class="col-md-12" style="padding-top: 20px; padding-bottom: 5px">
+                <label>终止时间</label>
+            </div>
+            <label class="checkbox-inline">
+                <input id="endTime" placeholder="结束时间" class="laydate-icon" onClick=clickEndTime()>
+            </label>
+
+        </div>
+
+        <div class="row" alt="按钮" style="padding-top: 20px">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-default" onclick="getInformation()">获取舆情信息</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
