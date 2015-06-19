@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>首页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="../css/initi.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/tableAction.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css"/>
+    <link rel="stylesheet" href="../css/jPages.css">
+
+    <script type="text/javascript" src="../lib/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="../lib/laydate.js"></script>
+    <script src="../lib/jPages.js"></script>
+
+    <script charset="gb2312" src="../js/crawlDoubanHuodong/getDouban.js"></script>
+
+</head>
+<body onload="initDouban()">
+<div class="main">
+    <div class="header">
+        <div class="help">
+            <a href="">联系我们</a> |
+            <a href="">使用帮助</a> |
+            <a href="">问题反馈</a>
+        </div>
+    </div>
+    <div class="topbar">
+        <ul>
+            <li><a href="#">   演出活动   </a></li>
+            <li><a href="#">   社会新闻   </a></li>
+            <li><a href="#">   百姓生活   </a></li>
+            <li><a href="#">   旅游热点   </a></li>
+            <li><a href="#">   楼房交易   </a></li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-md-1" alt="大类" style="border:1px solid #e1e1e1; height: 600px">
+        <div class="row" alt="分类查询" style="padding-top: 40px; width: 100px;height: 150px ;">
+            <a href="#" role="button">
+                <img border="0" src="../images/xinxichaxun.png" style="padding-left: 30px"/>
+                <label style="padding-left: 40px;">分类查询</label>
+            </a>
+        </div>
+        <div class="row" alt="主题分析" style="padding-top: 40px; width: 100px;height: 150px ;">
+            <a href="#" role="button">
+                <img border="0" src="../images/zhutifenxi.png" style="padding-left: 30px;"/>
+                <label style="padding-left: 40px;">主题分析</label>
+            </a>
+        </div>
+        <div class="row" alt="热点分析" style="padding-top: 40px; width: 100px;height: 150px ;">
+            <a class="clicked"  href="#" role="button">
+                <img border="0" src="../images/redianfenxi.png" style="padding-left: 30px"/>
+                <label style="padding-left: 40px;">热点分析</label>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="col-md-8">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <!--<label style="align-content: center;padding-top: 10px">豆瓣同城活动</label>-->
+                <table class="table table-bordered" id="activeInfo">
+                    <thead>
+                    <tr>
+                        <th style="width: 80px">活动编号</th>
+                        <th style="width: 100px">活动图片</th>
+                        <th style="width: 120px">活动标题</th>
+                        <th style="width: 100px">活动时间</th>
+                        <th style="width: 100px">活动地址</th>
+                        <th style="width: 80px">感兴趣人数</th>
+                        <th style="width: 60px">参加人数</th>
+                        <th style="width: 60px">详细信息</th>
+                    </tr>
+                    </thead>
+                    <tbody id="activeList"></tbody>
+                </table>
+                <div class="activeHolder" ></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3" style="border:1px solid #e1e1e1; height: 600px">
+        <div alt="类型">
+            <div class="row" style="height: 80px">
+                <div class="col-md-12" style="padding-top: 20px; padding-bottom: 5px">
+                    <label>类型</label>
+                </div>
+                <label class="radio-inline">
+                    <input type="radio"  name="inlineRadioOptions" id="all" value="option1" checked> 全部
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="yinyue" value="option2"> 音乐
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="xiju" value="option3"> 戏剧
+                </label>
+            </div>
+            <div class="row">
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="jiangzuo" value="option4"> 讲座
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="juhui" value="option5"> 聚会
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="dianying" value="option6"> 电影
+                </label>
+            </div>
+            <div class="row" style="padding-top: 10px">
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="zhanlan" value="option7"> 展览
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="yundong" value="option8"> 运动
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="gongyi" value="option9"> 公益
+                </label>
+            </div>
+            <div class="row" style="padding-top: 10px">
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="lvyou" value="option10"> 旅游
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="qita" value="option11"> 其他
+                </label>
+            </div>
+        </div>
+
+        <div class="row" alt="按钮" style="padding-top: 20px">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-default" onclick="getInformation()">获取舆情信息</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

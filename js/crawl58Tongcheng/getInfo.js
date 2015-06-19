@@ -110,7 +110,7 @@ var getInformation = function () {
 }
 
 var getSummaryTable = function (canshu) {
-    $.post("http://192.168.2.113:8888/yuqing/servlet_simple_information?"+canshu, function (summaryRawData) {//概要页面数据
+    $.post("http://192.168.2.113:8080/yuqing/servlet_simple_information?"+canshu, function (summaryRawData) {//概要页面数据
         $("#summaryList").empty();
         var summaryData = JSON.parse(summaryRawData);
         for (var i = 1; i < summaryData.length; i++) {
@@ -147,7 +147,7 @@ var getSummaryTable = function (canshu) {
                 var summaryId = summaryData[parseInt(trSeq)+1].seller_id;
                 console.log(summaryName+"   "+summaryId)
                 $("#detailList").empty();
-                $.post("http://192.168.2.113:8888/yuqing/servlet_detail_information?user_name="+summaryName+"&user_id="+summaryId, function (detailRawData) {//初始详细页面数据
+                $.post("http://192.168.2.113:8080/yuqing/servlet_detail_information?user_name="+summaryName+"&user_id="+summaryId, function (detailRawData) {//初始详细页面数据
                     var detailData = JSON.parse(detailRawData);
                     for (var i = 1; i < detailData.length; i++) {
                         var a = "<tr><td>" + i + "</td>" +//编号

@@ -35,8 +35,11 @@
 .summaryHolder span { margin: 0 5px; }
 
 
+
+
 .detailHolder {
     margin: 15px 0;
+
 }
 
 .detailHolder a {
@@ -70,3 +73,40 @@
 }
 
 .detailHolder span { margin: 0 5px; }
+
+
+.activeHolder {
+    margin: 15px 0;
+}
+
+.activeHolder a {
+    font-size: 12px;
+    cursor: pointer;
+    margin: 0 5px;
+    color: #333;
+}
+
+.activeHolder a:hover {
+    background-color: #222;
+    color: #fff;
+}
+
+.activeHolder a.jp-previous { margin-right: 15px; }
+.activeHolder a.jp-next { margin-left: 15px; }
+
+.activeHolder a.jp-current, a.jp-current:hover {
+    color: #FF4242;
+    font-weight: bold;
+}
+
+.activeHolder a.jp-disabled, a.jp-disabled:hover {
+    color: #bbb;
+}
+
+.activeHolder a.jp-current, a.jp-current:hover,
+.activeHolder a.jp-disabled, a.jp-disabled:hover {
+    cursor: default;
+    background: none;
+}
+
+.activeHolder span { margin: 0 5px; }
