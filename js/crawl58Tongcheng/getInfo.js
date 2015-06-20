@@ -116,7 +116,7 @@ var getSummaryTable = function (canshu) {
         for (var i = 1; i < summaryData.length; i++) {
             var a = "<tr> <td><input type='button' style='background-color: transparent; border: 0; background: none' value=" + summaryData[i].seller_name + "></th>" +//编号
                 "<td>" + replacePos(summaryData[i].seller_phone) + "</td>" +//卖家手机号
-                "<td>" + summaryData[i].publish_count + "</td>"//详细信息，网址
+                "<td style='color: red;font-size: 15px ; font-weight:bold;'>" + summaryData[i].publish_count + "</td>"//详细信息，网址
             $("#summaryList").append(a);
         }
         //设置分页

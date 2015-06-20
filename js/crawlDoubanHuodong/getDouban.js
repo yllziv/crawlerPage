@@ -69,8 +69,8 @@ var getSummaryTable = function (canshu) {
                 "<td style='height: 70px'>" + activeData[i].douban_title + "</td>" +   //标题
                 "<td style='height: 70px'>" + activeData[i].douban_date + "</td>" +   //活动时间
                 "<td style='height: 70px'>" + activeData[i].douban_pos + "</td>" +   //活动地址
-                "<td style='height: 70px'>" + activeData[i].douban_interest_times + "</td>" +   //感兴趣人数
-                "<td style='height: 70px'>" + activeData[i].douban_join_times + "</td>" +   //参加人数
+                "<td style='height: 70px;color: red;font-size: 15px ; font-weight:bold;'>" + activeData[i].douban_interest_times + "</td>" +   //感兴趣人数
+                "<td style='height: 70px;color: red;font-size: 15px ; font-weight:bold;'>" + activeData[i].douban_join_times + "</td>" +   //参加人数
                 "<td style='height: 70px'><a href='"+ activeData[i].douban_url +"' target='_blank'>网址</a></td>";    //网址
             $("#activeList").append(a);
         }

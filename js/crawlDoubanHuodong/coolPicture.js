@@ -72,11 +72,11 @@ var getSummaryTable = function (canshu) {
                     //"<IMG src='" + activeData[i*6 + j].douban_img + "' style='width:148px; height:210px;'/>" + //图片
                     "<IMG src='" + "http://localhost:8080/temp_imgs/douban/"+activeData[i*6 + j].douban_id+".jpg" + "' style='width:148px; height:210px;'/>" + //图片
                     "<h5 style='padding-top: 3px'>" + activeData[i + j].douban_title + "</h5></A><A class='brand_detail' " + //标题
-                    "href='" + activeData[i + j].douban_url + "' target='_blank'><table class='table table-bordered'><tbody><tr><td style='font-size: 15px ; font-weight:bold;'>" +
+                    "href='" + activeData[i + j].douban_url + "' target='_blank'><table class='table table-bordered' style='color: black;background-color: #c4e3f3'><tbody><tr><td style='font-size: 15px ; font-weight:bold;'>" +
                     "" + activeData[i + j].douban_title + "</td></tr><tr><td style='font-size: 10px'>" +
                     "地点：" + activeData[i + j].douban_pos + "</td></tr><tr><td style='font-size: 10px'>" + //活动地址
-                    "时间：" + activeData[i + j].douban_date + "</td></tr><tr><td style='font-size: 10px'>" +//活动时间
-                    "" + activeData[i + j].douban_interest_times + "人感兴趣</td></tr><tr><td style='font-size: 10px'>" +
+                    "时间：" + activeData[i + j].douban_date + "</td></tr><tr><td style='color: red;font-size: 15px ; font-weight:bold;'>" +//活动时间
+                    "" + activeData[i + j].douban_interest_times + "人感兴趣</td></tr><tr><td style='color: red;font-size: 15px ; font-weight:bold;'>" +
                     "" + activeData[i + j].douban_join_times + "人想参加</td></tr></tbody></table></A></LI></td>";
             }
             $("#coolPicture").append(tableString);
