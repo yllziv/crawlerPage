@@ -8,15 +8,16 @@
     <link rel="stylesheet" type="text/css" href="../css/index.css"/>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css"/>
     <link rel="stylesheet" href="../css/jPages.css">
+    <link href="../css/coolPictere.css" type=text/css rel=stylesheet />
 
     <script type="text/javascript" src="../lib/jquery-2.1.1.js"></script>
     <script type="text/javascript" src="../lib/laydate.js"></script>
     <script src="../lib/jPages.js"></script>
+    <SCRIPT charset="gb2312" src="../js/crawlDoubanHuodong/coolPicture.js"></SCRIPT>
 
-    <script charset="gb2312" src="../js/crawlDoubanHuodong/getDouban.js"></script>
 
 </head>
-<body onload="initDouban()">
+<body onload="initCoolPicture()">
 <div class="main">
     <div class="header">
         <div class="help">
@@ -59,31 +60,27 @@
     </div>
 
 
-    <div class="col-md-8">
+    <div class="col-md-9">
         <div class="col-md-12">
-            <div class="table-responsive">
-                <!--<label style="align-content: center;padding-top: 10px">豆瓣同城活动</label>-->
-                <table class="table table-bordered" id="activeInfo">
-                    <thead>
-                    <tr>
-                        <th style="width: 80px">活动编号</th>
-                        <th style="width: 100px">活动图片</th>
-                        <th style="width: 120px">活动标题</th>
-                        <th style="width: 100px">活动时间</th>
-                        <th style="width: 100px">活动地址</th>
-                        <th style="width: 80px">感兴趣人数</th>
-                        <th style="width: 60px">参加人数</th>
-                        <th style="width: 60px">详细信息</th>
-                    </tr>
-                    </thead>
-                    <tbody id="activeList"></tbody>
-                </table>
-                <div class="activeHolder" ></div>
-            </div>
+                        <table class="content_bottom,layout_main">
+                            <thead>
+                            <tr>
+                                <th style="opacity: 0;">nullnullnullnullnullnullnullnullnull</th>
+                                <th style="opacity: 0;">nullnullnullnullnullnullnullnullnull</th>
+                                <th style="opacity: 0;">nullnullnullnullnullnullnullnullnull</th>
+                                <th style="opacity: 0;">nullnullnullnullnullnullnullnullnull</th>
+                                <th style="opacity: 0;">nullnullnullnullnullnullnullnullnull</th>
+                                <th style="opacity: 0;">nullnullnullnullnullnullnullnullnull</th>
+                            </tr>
+                            </thead>
+                            <tbody id="coolPicture">
+                            </tbody>
+                        </table>
+                        <div class="detailHolder" id="coolPage"></div>
         </div>
     </div>
 
-    <div class="col-md-3" style="border:1px solid #e1e1e1; height: 600px">
+    <div class="col-md-2" style="border:1px solid #e1e1e1; height: 600px">
         <div alt="类型">
             <div class="row" style="height: 80px">
                 <div class="col-md-12" style="padding-top: 20px; padding-bottom: 5px">

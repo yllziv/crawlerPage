@@ -1,0 +1,90 @@
+﻿body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, img, dl, dt, dd, table, th, td, blockquote, fieldset, div, strong, label, em {
+	margin:0;
+	padding:0;
+	border:0;
+}
+ul, ol, li {
+	list-style:none;
+}
+input, button {
+	margin:0;
+	font-size:12px;
+	vertical-align:middle;
+}
+body {
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+	text-align:center;
+	margin:0 auto;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+.clearfloat {
+	height:0;
+	font-size:1px;
+	clear:both;
+	line-height:0;
+}
+#container {
+	width:960px;
+	text-align:left;
+	margin:0 auto;
+}
+a {
+	color:#333;
+	text-decoration:none;
+}
+a:hover {
+	color:#ef9b11;
+	text-decoration:underline;
+}
+.layout_main {
+	width:1000px;
+	margin:20px auto;
+}
+.content_bottom UL LI {
+	FLOAT: left
+}
+.content_bottom UL LI.brand_item {
+	WIDTH: 165px;
+	HEIGHT: 260px
+}
+.brand_item A {
+	DISPLAY: block;
+	WIDTH: 148px;
+	HEIGHT: 250px
+}
+.brand_item A:hover {
+	TEXT-DECORATION: none
+}
+.brand_item A.brand_name {
+	BORDER-RIGHT: #b69d6b 1px solid;
+	BORDER-TOP: #b69d6b 1px solid;
+	BORDER-LEFT: #b69d6b 1px solid;
+	BORDER-BOTTOM: #b69d6b 1px solid
+}
+.brand_item A.brand_detail {
+	BORDER-RIGHT: #daa900 2px solid;
+	BORDER-TOP: #daa900 2px solid;
+	BORDER-LEFT: #daa900 2px solid;
+	BORDER-BOTTOM: #daa900 2px solid;
+	/*background-color: #dfdacc;*/
+}
+.brand_item A SPAN {
+	DISPLAY: block;
+	MARGIN-LEFT: 1px;
+	WIDTH: 146px;
+	PADDING-TOP: 10px;
+	HEIGHT: 30px;
+	TEXT-ALIGN: center
+}
+A.brand_name SPAN {
+	COLOR: #7f5400;
+	BACKGROUND-COLOR: #e0dbcd
+}
+A.brand_detail SPAN {
+	COLOR: #fff;
+	BACKGROUND-COLOR: #8d5303
+}
