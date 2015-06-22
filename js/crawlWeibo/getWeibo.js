@@ -1,7 +1,7 @@
 
 //初始化页面
 var initDouban = function() {
-    getSummaryTable();
+    getSummaryTable("order_type=0");
 }
 
 
@@ -9,38 +9,17 @@ var initDouban = function() {
 var getInformation = function () {
     var weiboClass = [];//网站
 
-    if ($("#all").is(":checked")) {
-        weiboClass.push("-1");
-    }
-    if ($("#yinyue").is(":checked")) {
+    if ($("#moren").is(":checked")) {
         weiboClass.push("0");
     }
-    if ($("#xiju").is(":checked")) {
+    if ($("#pinglunrenshu").is(":checked")) {
         weiboClass.push("1");
     }
-    if ($("#jiangzuo").is(":checked")) {
+    if ($("#dianzanrenshu").is(":checked")) {
         weiboClass.push("2");
     }
-    if ($("#juhui").is(":checked")) {
+    if ($("#zhuanfarenshu").is(":checked")) {
         weiboClass.push("3");
-    }
-    if ($("#dianying").is(":checked")) {
-        weiboClass.push("4");
-    }
-    if ($("#zhanlan").is(":checked")) {
-        weiboClass.push("5");
-    }
-    if ($("#yundong").is(":checked")) {
-        weiboClass.push("6");
-    }
-    if ($("#gongyi").is(":checked")) {
-        weiboClass.push("7");
-    }
-    if ($("#lvyou").is(":checked")) {
-        weiboClass.push("8");
-    }
-    if ($("#qita").is(":checked")) {
-        weiboClass.push("9");
     }
 
     if (weiboClass.length == 0) {
@@ -50,12 +29,12 @@ var getInformation = function () {
         alert("请填写一种类别！")
         return;
     }
-    var canshu = "douban_type="+weiboClass.toString();
+    var canshu = "order_type="+weiboClass.toString();
     getSummaryTable(canshu)
 }
 
-var getSummaryTable = function () {
-    $.post("http://localhost:8080/yuqing/servlet_weibo_information", function (weiboRawData) {//概要页面数据
+var getSummaryTable = function (canshu) {
+    $.post("http://localhost:8080/yuqing/servlet_weibo_information?"+canshu, function (weiboRawData) {//概要页面数据
         $("#weiboList").empty();
         var weiboData = JSON.parse(weiboRawData);
         for (var i = 1; i < weiboData.length; i++) {
@@ -69,10 +48,15 @@ var getSummaryTable = function () {
             if(weiboData[i].weibo_title.length < 2 &&weiboData[i].weibo_content.length > 21){
                 weiboData[i].weibo_title = weiboData[i].weibo_content.substring(0,20)
             }
+            var weiboContent = weiboData[i].weibo_content;
+            if(weiboContent.length > 111){
+                weiboContent = weiboContent.substr(0,110)
+            }
+
             var a =
                 "<tr></tr><td style='height: 70px'>" + weiboData[i].weibo_title +"</td>" +   //微博标题
                 "<td style='height: 70px'><img src= " + weiboImage + " style='width: 70px;height: 50px'></td>" +   //图片
-                "<td style='height: 70px'>" + weiboData[i].weibo_content + "</td>" +   //微博内容
+                "<td style='height: 70px'>" + weiboContent + "</td>" +   //微博内容
                 "<td style='height: 70px'>" + "2015年"+ weiboData[i].pub_time.month+"月"+
                 + weiboData[i].pub_time.day+"日"+ weiboData[i].pub_time.hours+"时"+
                 + weiboData[i].pub_time.minutes+"分"+ weiboData[i].pub_time.seconds+"秒"+"</td>" +   //发布时间

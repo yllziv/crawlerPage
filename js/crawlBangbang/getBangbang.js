@@ -1,7 +1,7 @@
 
 //初始化页面
 var initDouban = function() {
-    getSummaryTable();
+    getSummaryTable("order_type=0");
 }
 
 
@@ -9,38 +9,14 @@ var initDouban = function() {
 var getInformation = function () {
     var bangbangClass = [];//网站
 
-    if ($("#all").is(":checked")) {
-        bangbangClass.push("-1");
-    }
-    if ($("#yinyue").is(":checked")) {
+    if ($("#moren").is(":checked")) {
         bangbangClass.push("0");
     }
-    if ($("#xiju").is(":checked")) {
+    if ($("#yueducishu").is(":checked")) {
         bangbangClass.push("1");
     }
-    if ($("#jiangzuo").is(":checked")) {
+    if ($("#pingluncishu").is(":checked")) {
         bangbangClass.push("2");
-    }
-    if ($("#juhui").is(":checked")) {
-        bangbangClass.push("3");
-    }
-    if ($("#dianying").is(":checked")) {
-        bangbangClass.push("4");
-    }
-    if ($("#zhanlan").is(":checked")) {
-        bangbangClass.push("5");
-    }
-    if ($("#yundong").is(":checked")) {
-        bangbangClass.push("6");
-    }
-    if ($("#gongyi").is(":checked")) {
-        bangbangClass.push("7");
-    }
-    if ($("#lvyou").is(":checked")) {
-        bangbangClass.push("8");
-    }
-    if ($("#qita").is(":checked")) {
-        bangbangClass.push("9");
     }
 
     if (bangbangClass.length == 0) {
@@ -50,26 +26,32 @@ var getInformation = function () {
         alert("请填写一种类别！")
         return;
     }
-    var canshu = "douban_type="+bangbangClass.toString();
+    var canshu = "order_type="+bangbangClass.toString();
     getSummaryTable(canshu)
 }
 
-var getSummaryTable = function () {
-    $.post("http://localhost:8080/yuqing/servlet_bangbang_information", function (bangbangRawData) {//概要页面数据
+var getSummaryTable = function (canshu) {
+    $.post("http://localhost:8080/yuqing/servlet_bangbang_information?"+canshu, function (bangbangRawData) {//概要页面数据
         $("#bangbangList").empty();
         var bangbangData = JSON.parse(bangbangRawData);
         for (var i = 1; i < bangbangData.length; i++) {
             var bangbangImage = "";
 
-            if(bangbangData[i].bb_img_url.length < 2){
+            if(bangbangData[i].bb_img_url.length < 10){
                 bangbangImage = "http://localhost:8080/temp_imgs/bangbang.jpg";
             }else{
                 bangbangImage = "http://localhost:8080/temp_imgs/bangbang/"+ bangbangData[i].bangbang_id +".jpg"
             }
+
+            var bangbangContent = bangbangData[i].bb_content;
+            if(bangbangContent.length > 111){
+                bangbangContent = bangbangContent.substr(0,110)
+            }
+
             var a =
                 "<tr></tr><td style='height: 70px'>" + bangbangData[i].bangbang_title +"</td>" +   //新闻标题
                 "<td style='height: 70px'><img src= " + bangbangImage + " style='width: 50px;height: 44.5px'></td>" +   //图片
-                "<td style='height: 70px'>" + bangbangData[i].bb_content + "</td>" +   //新闻内容
+                "<td style='height: 70px'>" + bangbangContent + "</td>" +   //新闻内容
                 "<td style='height: 70px'>" + "2015年"+ bangbangData[i].bb_pub_time.month+"月"+
                 + bangbangData[i].bb_pub_time.day+"日"+ bangbangData[i].bb_pub_time.hours+"时"+
                 + bangbangData[i].bb_pub_time.minutes+"分"+ bangbangData[i].bb_pub_time.seconds+"秒"+"</td>" +   //发布时间

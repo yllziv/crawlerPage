@@ -1,7 +1,6 @@
 var initCoolPicture = function () {
 
-    getSummaryTable("douban_type=-1");//初始化页面
-}
+    getSummaryTable("douban_type=-1&order_type=0");}
 
 
 var getInformation = function () {
@@ -44,16 +43,33 @@ var getInformation = function () {
     if (activeClass.length == 0) {
         alert("请填写查询条件！")
         return;
-    } else if (activeClass.length > 1) {
+    }else if(activeClass.length > 1) {
         alert("请填写一种类别！")
         return;
     }
-    var canshu = "douban_type=" + activeClass.toString();
+    var oderType = [];//排序方式
+    if ($("#moren").is(":checked")) {
+        oderType.push("0");
+    }
+    if ($("#canjiarenshu").is(":checked")) {
+        oderType.push("1");
+    }
+    if ($("#ganxingqurenshu").is(":checked")) {
+        oderType.push("2");
+    }
+    if (oderType.length == 0) {
+        alert("请填写查询条件！")
+        return;
+    }else if(oderType.length > 1) {
+        alert("请填写一种类别！")
+        return;
+    }
+    var canshu = "douban_type="+activeClass.toString()+"&order_type="+oderType.toString();
     getSummaryTable(canshu)
 }
 
 var getSummaryTable = function (canshu) {
-    $.post("http://192.168.2.113:8080/yuqing/servlet_douban_information?" + canshu, function (activeRawData) {//概要页面数据
+    $.post("http://localhost:8080/yuqing/servlet_douban_information?" + canshu, function (activeRawData) {//概要页面数据
         $("#coolPicture").empty();
         var activeData = JSON.parse(activeRawData);
         for (var i = 1; i < activeData.length / 6-1; i++) {
@@ -68,10 +84,9 @@ var getSummaryTable = function (canshu) {
                 if(activeData[i + j].douban_pos.length >15 ){
                     activeData[i + j].douban_pos  = activeData[i + j].douban_pos.substring(0,15);
                 }
-                tableString += "<td><LI class='brand_item'><A class='brand_name' href='#' >" +
-                    //"<IMG src='" + activeData[i*6 + j].douban_img + "' style='width:148px; height:210px;'/>" + //图片
+                tableString += "<td><LI class='brand_item'><A class='brand_detail' href='#' >" +
                     "<IMG src='" + "http://localhost:8080/temp_imgs/douban/"+activeData[i*6 + j].douban_id+".jpg" + "' style='width:148px; height:210px;'/>" + //图片
-                    "<h5 style='padding-top: 3px'>" + activeData[i + j].douban_title + "</h5></A><A class='brand_detail' " + //标题
+                    "<h5 style='padding-top: 3px ;color: black'>" + activeData[i + j].douban_title + "</h5></A><A class='brand_name' " + //标题
                     "href='" + activeData[i + j].douban_url + "' target='_blank'><table class='table table-bordered' style='color: black;background-color: #c4e3f3'><tbody><tr><td style='font-size: 15px ; font-weight:bold;'>" +
                     "" + activeData[i + j].douban_title + "</td></tr><tr><td style='font-size: 10px'>" +
                     "地点：" + activeData[i + j].douban_pos + "</td></tr><tr><td style='font-size: 10px'>" + //活动地址

@@ -1,7 +1,7 @@
 //初始化页面
 
 
-$.post("http://192.168.2.113:8080/yuqing/servlet_simple_information?query_type=0&seller_type=0&product_type=0&start_time=2015-6-10&end_time=2015-6-15", function (summaryRawData) {//概要页面数据
+$.post("http://localhost:8080/yuqing/servlet_simple_information?query_type=0&seller_type=0&product_type=0&start_time=2015-6-10&end_time=2015-6-15", function (summaryRawData) {//概要页面数据
     $("#summaryList").empty();
     var summaryData = JSON.parse(summaryRawData);
     for (var i = 1; i < summaryData.length; i++) {
@@ -39,7 +39,7 @@ $.post("http://192.168.2.113:8080/yuqing/servlet_simple_information?query_type=0
             console.log(summaryName+"   "+summaryId)
             $("#detailList").empty();
             //http://localhost:8888/yuqing/servlet_detail_information?user_name=%E6%9C%B1%E7%BB%8F%E7%90%86&user_id=48461690
-            $.post("http://192.168.2.113:8888/yuqing/servlet_detail_information?user_name="+summaryName+"&user_id="+summaryId, function (detailRawData) {//初始详细页面数据
+            $.post("http://localhost:8888/yuqing/servlet_detail_information?user_name="+summaryName+"&user_id="+summaryId, function (detailRawData) {//初始详细页面数据
                 var detailData = JSON.parse(detailRawData);
                 for (var i = 1; i < detailData.length; i++) {
                     var a = "<tr><td>" + i + "</td>" +//编号
@@ -63,7 +63,7 @@ $.post("http://192.168.2.113:8080/yuqing/servlet_simple_information?query_type=0
         }
     })
     $("#detailList").empty();
-    $.post("http://192.168.2.113:8080/yuqing/servlet_detail_information?user_name=%E6%9C%B1%E7%BB%8F%E7%90%86&user_id=48461690", function (detailRawData) {//初始详细页面数据
+    $.post("http://localhost:8080/yuqing/servlet_detail_information?user_name=%E6%9C%B1%E7%BB%8F%E7%90%86&user_id=48461690", function (detailRawData) {//初始详细页面数据
         var detailData = JSON.parse(detailRawData);
         for (var i = 1; i < detailData.length; i++) {
             var a = "<tr><td>" + i + "</td>" +//编号
