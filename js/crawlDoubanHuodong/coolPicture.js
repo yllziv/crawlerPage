@@ -74,7 +74,7 @@ var getSummaryTable = function (canshu) {
         var activeData = JSON.parse(activeRawData);
         for (var i = 1; i < activeData.length / 6-1; i++) {
             var tableString = "<tr>";
-            for (var j = 0; j < 6; j++) {
+            for (var j = 0; j < 5; j++) {
                 if(activeData[i + j].douban_title.length >15 ){
                     activeData[i + j].douban_title  = activeData[i + j].douban_title.substring(0,15);
                 }
