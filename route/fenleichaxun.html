@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>首页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="../css/initi.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/tableAction.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css"/>
+    <link rel="stylesheet" href="../css/jPages.css">
+    <link href="../css/coolPictere.css" type=text/css rel=stylesheet />
+
+    <script type="text/javascript" src="../lib/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="../lib/laydate.js"></script>
+    <script src="../lib/jPages.js"></script>
+
+    <script charset="gb2312" src="../js/fenleichaxun/fenleichaxun.js"></script>
+
+</head>
+<body onload="initDouban()">
+<div class="main">
+    <div class="header">
+        <div class="help">
+            <a href="">联系我们</a> |
+            <a href="">使用帮助</a> |
+            <a href="">问题反馈</a>
+        </div>
+    </div>
+    <div class="topbar">
+        <ul>
+            <li><input id="filterName" placeholder="全文索引" type="text" style="width: 100px; height: 30px;line-height: 30px"/>&nbsp;</li>
+            <li><a href="#">  未分类</a></li>
+            <li><a href="#">  百姓生活</a></li>
+            <li><a href="#">  社会新闻</a></li>
+            <li><a href="#">  演出活动</a></li>
+            <li><a href="#">  楼房交易</a></li>
+            <li><a href="#">  商场促销</a></li>
+            <li><a href="#">  销赃分析</a></li>
+            <li><a href="#">  旅游</a></li>
+
+        </ul>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-md-1" alt="大类" style="border:1px solid #e1e1e1; height: 600px">
+        <div class="row" alt="分类查询" style="padding-top: 40px; width: 100px;height: 150px ;">
+            <a class="clicked" href="./fenleichaxun.html" role="button">
+                <img border="0" src="../images/xinxichaxun.png" style="padding-left: 30px"/>
+                <label style="padding-left: 40px;">分类查询</label>
+            </a>
+        </div>
+        <div class="row" alt="主题分析" style="padding-top: 40px; width: 100px;height: 150px ;">
+            <a href="./crawl58Tongcheng.html" role="button">
+                <img border="0" src="../images/zhutifenxi.png" style="padding-left: 30px;"/>
+                <label style="padding-left: 40px;">主题分析</label>
+            </a>
+        </div>
+        <div class="row" alt="热点分析" style="padding-top: 40px; width: 100px;height: 150px ;">
+            <a href="./crawlDoubanHuodong.html" role="button">
+                <img border="0" src="../images/redianfenxi.png" style="padding-left: 30px"/>
+                <label style="padding-left: 40px;">热点分析</label>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <!--<label style="align-content: center;padding-top: 10px">豆瓣同城活动</label>-->
+                <table class="table table-bordered" id="weiboInfo">
+                    <thead>
+                    <tr>
+                        <th style="width: 80px">标题</th>
+                        <th style="width: 100px">图片</th>
+                        <th style="width: 200px">内容</th>
+                        <th style="width: 70px">发布时间</th>
+                        <th style="width: 70px">地点</th>
+                        <th style="width: 70px">来源</th>
+                        <th style="width: 70px">关注度</th>
+                        <th style="width: 70px">详细信息</th>
+                        <th style="width: 70px">类别</th>
+                        <th style="width: 100px">移动到…</th>
+                    </tr>
+                    </thead>
+                    <tbody id="weifenlei">
+                    <tr>
+                        <td>bbbbbbbb</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>
+                            <select style="width: 60px;height: 20px;">
+                                <option>百姓生活</option>
+                                <option>社会新闻</option>
+                                <option>演出活动</option>
+                                <option>楼房交易</option>
+                                <option>商场促销</option>
+                                <option>销赃分析</option>
+                                <option>旅游</option>
+                            </select>&nbsp;<button>确定</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                    </tr>
+                    <tr>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                    </tr>
+                    </tbody>
+                    <tbody id="anjian" style="display: none">
+                    <tr>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                    </tr>
+                    <tr>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                    </tr>
+                    <tr>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                    </tr>
+                    </tbody>
+                    <tbody id="minsheng" style="display: none">
+                    <tr>
+                        <td>bbbbbb</td>
+                        <td>ddbbbbb</td>
+                        <td>bbbbbb</td>
+                        <td>bbbbbb</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                    </tr>
+                    <tr>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                    </tr>
+                    <tr>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                    </tr>
+                    </tbody>
+                    <tbody id="renyuan" style="display: none">
+                    <tr>
+                        <td>cccccccc</td>
+                        <td>cccccccc</td>
+                        <td>cccccccc</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                    </tr>
+                    <tr>
+                        <td>eeeeeeee</td>
+                        <td>eeeeeeee</td>
+                        <td>eeeeeee</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                    </tr>
+                    <tr>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                    </tr>
+                    </tbody>
+                    <tbody id="fuwu" style="display: none">
+                    <tr>
+                        <td>ffffffff</td>
+                        <td>ffffffff</td>
+                        <td>ffffffff</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                    </tr>
+                    <tr>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                    </tr>
+                    <tr>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                    </tr>
+                    </tbody>
+                    <tbody id="guanli" style="display: none">
+                    <tr>
+                        <td>gggggggg</td>
+                        <td>gggggggg</td>
+                        <td>gggggggg</td>
+                        <td>gggggggg</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                    </tr>
+                    <tr>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                    </tr>
+                    <tr>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                    </tr>
+                    </tbody>
+                    <tbody id="shehui" style="display: none">
+                    <tr>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                        <td>dddddddd</td>
+                    </tr>
+                    <tr>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                    </tr>
+                    <tr>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                        <td>balabala</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="activeHolder" ></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-2" style="border:1px solid #e1e1e1; height: 600px">
+        <div class="row" alt="来源" style="height: 80px">
+            <div class="col-md-12" style="padding-top: 20px; padding-bottom: 5px">
+                <label>来源</label>&nbsp;&nbsp;
+                <select style="width: 80px;height: 20px;">
+                    <option>全部</option>
+                    <option>58同城</option>
+                    <option>赶集网</option>
+                    <option>百姓网</option>
+                    <option>亿房网</option>
+                    <option>搜房网</option>
+                    <option>豆瓣同城</option>
+                    <option>大麦网</option>
+                    <option>微博</option>
+                    <option>今日头条</option>
+                    <option>帮帮网</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row" alt="地址" style="height: 80px">
+            <div class="col-md-12" style="padding-top: 20px; padding-bottom: 5px">
+                <label>地址</label>&nbsp;&nbsp;
+                <select id="quyu" style="width: 80px;height: 20px;">
+                    <option>全部</option>
+                    <option>洪山区</option>
+                    <option>武昌区</option>
+                    <option>江汉区</option>
+                    <option>江夏区</option>
+                    <option>江岸区</option>
+                    <option>汉阳区</option>
+                    <option>青山区</option>
+                    <option>硚口区</option>
+                    <option>东西湖区</option>
+                    <option>黄陂区</option>
+                    <option>新洲区</option>
+                    <option>蔡甸区</option>
+                    <option>汉南区</option>
+                    <option>其他</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row" alt="热门商圈" style="height: 80px">
+            <div class="col-md-12" style="padding-top: 20px; padding-bottom: 5px">
+                <label>热门商圈</label>&nbsp;&nbsp;
+                <select id="remenshangquan" style="width: 80px;height: 20px;">
+                    <option>全部</option>
+                    <option>光谷</option>
+                    <option>南湖</option>
+                    <option>街道口</option>
+                    <option>鲁巷</option>
+                    <option>东湖高新技术</option>
+                    <option>虎泉</option>
+                    <option>东湖区</option>
+                    <option>东西湖</option>
+                    <option>徐东大街</option>
+                    <option>广埠屯</option>
+                    <option>光谷创业街</option>
+                    <option>白沙洲</option>
+                    <option>黄家湖</option>
+                    <option>大学城</option>
+                    <option>石牌岭</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row" alt="起始时间" style="height: 80px">
+            <div class="col-md-12" style="padding-top: 20px; padding-bottom: 5px">
+                <label>起始时间</label>
+                <br/>
+                <label class="checkbox-inline">
+                    <input id="startTime" placeholder="开始时间" class="laydate-icon" onClick=clickStartTime()>
+                </label>
+            </div>
+        </div>
+        <div class="row" alt="终止时间" style="height: 80px">
+            <div class="col-md-12" style="padding-top: 20px; padding-bottom: 5px">
+                <label>终止时间</label>
+            </div>
+            <label class="checkbox-inline">
+                <input id="endTime" placeholder="结束时间" class="laydate-icon" onClick=clickEndTime()>
+            </label>
+
+        </div>
+
+        <div class="row" alt="按钮" style="padding-top: 20px">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-default" onclick="getInformation()">获取舆情信息</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

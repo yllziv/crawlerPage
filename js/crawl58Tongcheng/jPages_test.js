@@ -1,6 +1,7 @@
 //初始化页面
-
-
+//$("#detailList").ajaxStop(function(){
+//    alert("所有 AJAX 请求已完成");
+//});
 $.post("http://localhost:8080/yuqing/servlet_simple_information?query_type=0&seller_type=0&product_type=0&start_time=2015-6-10&end_time=2015-6-15", function (summaryRawData) {//概要页面数据
     $("#summaryList").empty();
     var summaryData = JSON.parse(summaryRawData);
