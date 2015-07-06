@@ -1,6 +1,7 @@
 
 //初始化页面
 var initDouban = function() {
+    $('#shclProgress').shCircleLoader({color:"blue"});
     getSummaryTable("order_type=0");
 }
 
@@ -27,20 +28,22 @@ var getInformation = function () {
         return;
     }
     var canshu = "order_type="+bangbangClass.toString();
-    getSummaryTable(canshu)
+    getSummaryTable(canshu);
 }
 
 var getSummaryTable = function (canshu) {
-    $.post("http://localhost:8080/yuqing/servlet_bangbang_information?"+canshu, function (bangbangRawData) {//概要页面数据
+    $("#shclProgress").show();
+    $.post("http://202.114.114.34:8878/yuqing/servlet_bangbang_information?"+canshu, function (bangbangRawData) {//概要页面数据
+        $("#shclProgress").hide();
         $("#bangbangList").empty();
         var bangbangData = JSON.parse(bangbangRawData);
         for (var i = 1; i < bangbangData.length; i++) {
             var bangbangImage = "";
 
             if(bangbangData[i].bb_img_url.length < 10){
-                bangbangImage = "http://localhost:8080/temp_imgs/bangbang.jpg";
+                bangbangImage = "http://202.114.114.34:8878/temp_imgs/bangbang.jpg";
             }else{
-                bangbangImage = "http://localhost:8080/temp_imgs/bangbang/"+ bangbangData[i].bangbang_id +".jpg"
+                bangbangImage = "http://202.114.114.34:8878/temp_imgs/bangbang/"+ bangbangData[i].bangbang_id +".jpg"
             }
 
             var bangbangContent = bangbangData[i].bb_content;

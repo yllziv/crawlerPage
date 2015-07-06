@@ -1,6 +1,7 @@
 
 //初始化页面
 var initDouban = function() {
+    $('#shclProgress').shCircleLoader({color:"blue"});
     getSummaryTable("douban_type=-1&order_type=0");
 }
 //获得某一范围随机数
@@ -76,13 +77,15 @@ var getInformation = function () {
 }
 
 var getSummaryTable = function (canshu) {
-    $.post("http://localhost:8080/yuqing/servlet_douban_information?" + canshu, function (activeRawData) {//概要页面数据
+    $("#shclProgress").show();
+    $.post("http://202.114.114.34:8878/yuqing/servlet_douban_information?" + canshu, function (activeRawData) {//概要页面数据
+        $("#shclProgress").hide();
         $("#activeList").empty();
         var activeData = JSON.parse(activeRawData);
         for (var i = 1; i < activeData.length; i++) {
             var a =
                 "<tr></tr><td style='height: 70px'>" + activeData[i].douban_id +"</td>" +   //ID
-                "<td style='height: 70px'><img src= " + "http://localhost:8080/temp_imgs/douban/"+activeData[i].douban_id+".jpg" + " style='width: 50px;height: 44.5px'></td>" +   //图片
+                "<td style='height: 70px'><img src= " + "http://202.114.114.34:8878/temp_imgs/douban/"+activeData[i].douban_id+".jpg" + " style='width: 50px;height: 44.5px'></td>" +   //图片
                 "<td style='height: 70px'>" + activeData[i].douban_title + "</td>" +   //标题
                 "<td style='height: 70px'>" + activeData[i].douban_date + "</td>" +   //活动时间
                 "<td style='height: 70px'>" + activeData[i].douban_pos + "</td>" +   //活动地址

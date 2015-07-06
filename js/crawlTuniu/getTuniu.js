@@ -1,6 +1,7 @@
 
 //初始化页面
 var initDouban = function() {
+    $('#shclProgress').shCircleLoader({color:"blue"});
     getSummaryTable("order_type=0");
 }
 
@@ -30,7 +31,9 @@ var orderInformation = function () {
 }
 
 var getSummaryTable = function (canshu) {
-    $.post("http://localhost:8080/yuqing/servlet_tuniu_information?" + canshu, function (tuniuRawData) {//概要页面数据
+    $("#shclProgress").show();
+    $.post("http://202.114.114.34:8878/yuqing/servlet_tuniu_information?" + canshu, function (tuniuRawData) {//概要页面数据
+        $("#shclProgress").hide();
         $("#tuniuList").empty();
         var tuniuData = JSON.parse(tuniuRawData);
         for (var i = 1; i < tuniuData.length; i++) {
@@ -45,9 +48,9 @@ var getSummaryTable = function (canshu) {
             // 途牛图片
             var tuniuImage = "";
             if(tuniuData[i].tuniu_img_url.length < 20){
-                tuniuImage = "http://localhost:8080/temp_imgs/tuniu.jpg";
+                tuniuImage = "http://202.114.114.34:8878/temp_imgs/tuniu.jpg";
             }else{
-                tuniuImage = "http://localhost:8080/temp_imgs/tuniu/"+ tuniuData[i].tuniu_id +".jpg"
+                tuniuImage = "http://202.114.114.34:8878/temp_imgs/tuniu/"+ tuniuData[i].tuniu_id +".jpg"
             }
             var a =
                 "<tr></tr><td style='height: 70px'>" + tuniuTitle +"</td>" +   //景点名称

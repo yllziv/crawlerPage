@@ -47,6 +47,12 @@ var replacePos = function(strObj)
 }
 
 var getInformation = function () {
+    $('#shclProgress').show();
+    $('#detailProgress').hide();
+    //加载页面
+    $('#detailProgress').shCircleLoader({color: "blue"});
+    $('#shclProgress').shCircleLoader({color: "blue"});
+
     var peopleClass = [];//卖家类型
     var siteClass = [];//网站
     var goodClass = [];//销赃类别
@@ -110,7 +116,9 @@ var getInformation = function () {
 }
 
 var getSummaryTable = function (canshu) {
-    $.post("http://localhost:8080/yuqing/servlet_simple_information?"+canshu, function (summaryRawData) {//概要页面数据
+
+    $.post("http://202.114.114.34:8878/yuqing/servlet_simple_information?"+canshu, function (summaryRawData) {//概要页面数据
+        $('#shclProgress').hide();
         $("#summaryList").empty();
         var summaryData = JSON.parse(summaryRawData);
         for (var i = 1; i < summaryData.length; i++) {
@@ -139,6 +147,7 @@ var getSummaryTable = function (canshu) {
         });
         //获得行列号
         $("#summaryInfo td").click(function () {
+            $('#detailProgress').show();
             var tdSeq = $(this).parent().find("td").index($(this));
             var trSeq = $(this).parent().parent().find("tr").index($(this).parent());
             //alert("第" + (trSeq) + "行，第" + (tdSeq + 1) + "列");
@@ -147,7 +156,8 @@ var getSummaryTable = function (canshu) {
                 var summaryId = summaryData[parseInt(trSeq)+1].seller_id;
                 console.log(summaryName+"   "+summaryId)
                 $("#detailList").empty();
-                $.post("http://localhost:8080/yuqing/servlet_detail_information?user_name="+summaryName+"&user_id="+summaryId, function (detailRawData) {//初始详细页面数据
+                $.post("http://202.114.114.34:8878/yuqing/servlet_detail_information?user_name="+summaryName+"&user_id="+summaryId, function (detailRawData) {//初始详细页面数据
+                    $('#detailProgress').hide();
                     var detailData = JSON.parse(detailRawData);
                     for (var i = 1; i < detailData.length; i++) {
                         var a = "<tr><td>" + i + "</td>" +//编号

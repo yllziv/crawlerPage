@@ -69,7 +69,7 @@ var getInformation = function () {
 }
 
 var getSummaryTable = function (canshu) {
-    $.post("http://localhost:8080/yuqing/servlet_douban_information?" + canshu, function (activeRawData) {//概要页面数据
+    $.post("http://202.114.114.34:8878/yuqing/servlet_douban_information?" + canshu, function (activeRawData) {//概要页面数据
         $("#coolPicture").empty();
         var activeData = JSON.parse(activeRawData);
         for (var i = 1; i < activeData.length / 6-1; i++) {
@@ -85,7 +85,7 @@ var getSummaryTable = function (canshu) {
                     activeData[i + j].douban_pos  = activeData[i + j].douban_pos.substring(0,15);
                 }
                 tableString += "<td><LI class='brand_item'><A class='brand_detail' href='#' >" +
-                    "<IMG src='" + "http://localhost:8080/temp_imgs/douban/"+activeData[i*6 + j].douban_id+".jpg" + "' style='width:148px; height:210px;'/>" + //图片
+                    "<IMG src='" + "http://202.114.114.34:8878/temp_imgs/douban/"+activeData[i*6 + j].douban_id+".jpg" + "' style='width:148px; height:210px;'/>" + //图片
                     "<h5 style='padding-top: 3px ;color: black'>" + activeData[i + j].douban_title + "</h5></A><A class='brand_name' " + //标题
                     "href='" + activeData[i + j].douban_url + "' target='_blank'><table class='table table-bordered' style='color: black;background-color: #c4e3f3'><tbody><tr><td style='font-size: 15px ; font-weight:bold;'>" +
                     "" + activeData[i + j].douban_title + "</td></tr><tr><td style='font-size: 10px'>" +

@@ -1,6 +1,7 @@
 
 //初始化页面
 var initDouban = function() {
+    $('#shclProgress').shCircleLoader({color:"blue"});
     getSummaryTable("order_type=0");
 }
 
@@ -34,16 +35,18 @@ var getInformation = function () {
 }
 
 var getSummaryTable = function (canshu) {
-    $.post("http://localhost:8080/yuqing/servlet_weibo_information?"+canshu, function (weiboRawData) {//概要页面数据
+    $("#shclProgress").show();
+    $.post("http://202.114.114.34:8878/yuqing/servlet_weibo_information?"+canshu, function (weiboRawData) {//概要页面数据
+        $("#shclProgress").hide();
         $("#weiboList").empty();
         var weiboData = JSON.parse(weiboRawData);
         for (var i = 1; i < weiboData.length; i++) {
             var weiboImage = "";
             var weiboTitle = "";
             if(weiboData[i].image_url.length < 2){
-                weiboImage = "http://localhost:8080/temp_imgs/weibo.jpg";
+                weiboImage = "http://202.114.114.34:8878/temp_imgs/weibo.jpg";
             }else{
-                weiboImage = "http://localhost:8080/temp_imgs/weibo/"+ weiboData[i].weibo_id +".jpg"
+                weiboImage = "http://202.114.114.34:8878/temp_imgs/weibo/"+ weiboData[i].weibo_id +".jpg"
             }
             if(weiboData[i].weibo_title.length < 2 &&weiboData[i].weibo_content.length > 21){
                 weiboData[i].weibo_title = weiboData[i].weibo_content.substring(0,20)
