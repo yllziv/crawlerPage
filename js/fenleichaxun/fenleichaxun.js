@@ -60,7 +60,7 @@ function init(){
     //加载页面
     $('#shclProgress').shCircleLoader({color:"blue"});
 
-    //初始化页面，未分类
+    //初始化页面， 未分类
     getSummaryTable(0,"");
 
     /**
