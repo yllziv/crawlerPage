@@ -8,7 +8,7 @@ var initDouban = function() {
 
 
 var orderInformation = function () {
-    var tuniuClass = [];//ÍøÕ¾
+    var tuniuClass = [];// ÍøÕ¾
 
     if ($("#moren").is(":checked")) {
         tuniuClass.push("0");
