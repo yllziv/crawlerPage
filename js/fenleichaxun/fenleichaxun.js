@@ -29,7 +29,6 @@ function getInformation(){
         allPageNum = parseInt(bangbangData[1].count_num/perPageNum)+1
         setPage(document.getElementsByClassName("activeHolder")[0],allPageNum,1);
     });
-    alert(canshu)
     getSummaryTable(topicType,canshu);
 }
 
@@ -207,7 +206,6 @@ function getSummaryTable(topicType,canshu) {
             //更改li颜色
         $(".topbar a").css("color","black");
         $(".topbar a:eq("+topicType+")").css("color","blue");
-
         $("#bangbangList").empty();
         var bangbangData = JSON.parse(bangbangRawData);
         var bangbangImage = "";
@@ -270,7 +268,6 @@ function getSummaryTable(topicType,canshu) {
             $.post("http://202.114.114.34:8878/yuqing/servlet_query_change_topic?id="+id+"&source_type="+oldTyep+"&new_type="+newType,function(data){
                 console.log(data.toString())
                 if(data.toString() == "[true]"){
-                    //alert("修改成功");
                     $(e.target).parent().parent().hide();
                     //$(e.target).parent().prev().text(listTypeArray[parseInt(newType)]);
                 }
