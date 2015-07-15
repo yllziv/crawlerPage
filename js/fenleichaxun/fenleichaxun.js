@@ -1,3 +1,10 @@
+var perPageNum = 6;     //每页显示的条数
+var topicType = 0;
+var sampleLoc = "洪山区";
+var detailleLoc = "光谷";
+var startTime = "2015-5-14";
+var endTime = "2015-6-15";
+var whichType = true; // 默认是从上面菜单中选择不同类别，false表示查询
 
 var clickStartTime = function () {
     laydate({istime: true, format: 'YYYY-MM-DD'})
@@ -9,36 +16,59 @@ var clickEndTime = function () {
 
 }
 function getInformation(){
-    var startTime = $("#startTime").val();
-    var endTime = $("#endTime").val();
-    var sampleLoc = $("#quyu").find("option:selected").text();
-    var detailleLoc = $("#remenshangquan").find("option:selected").text();
+    whichType = false;
+    startTime = $("#startTime").val();
+    endTime = $("#endTime").val();
+    sampleLoc = $("#quyu").find("option:selected").text();
+    detailleLoc = $("#remenshangquan").find("option:selected").text();
     var sourcetype = $("#sourcetype").find("option:selected").index();
-    var canshu = "&start_date="+startTime+"&end_date="+endTime+"&location="+sampleLoc+"&detail_location="+detailleLoc;
-    getSummaryTable(sourcetype,canshu);
-
+    topicType = sourcetype;
+    var canshu = "topic_type="+topicType+"&start_num=0&total_num="+perPageNum+"&start_date="+startTime+"&end_date="+endTime+"&location="+sampleLoc+"&detail_location="+detailleLoc;
+    $.post("http://202.114.114.34:8878/yuqing/servlet_query_by_condition?"+canshu, function (bangbangRawData) {//概要页面数据
+        var bangbangData = JSON.parse(bangbangRawData);
+        allPageNum = parseInt(bangbangData[1].count_num/perPageNum)+1
+        setPage(document.getElementsByClassName("activeHolder")[0],allPageNum,1);
+    });
+    alert(canshu)
+    getSummaryTable(topicType,canshu);
 }
 
+
 function init(){
+    whichType = true;
     //加载页面
     $('#shclProgress').shCircleLoader({color:"blue"});
 
     //初始化页面， 未分类
-    getSummaryTable(0,"");
+    $.post("http://202.114.114.34:8878/yuqing/servlet_query_total_records?topic_type=0", function (allSimplePageNum) {//概要页面数据
+        allSimplePageNum = parseInt(allSimplePageNum.substring(1,allSimplePageNum.length-1));
+        var allPageNum = parseInt(allSimplePageNum/perPageNum)+1
+        setPage(document.getElementsByClassName("activeHolder")[0], allPageNum, 1);
+        topicType = 0;
+        getSummaryTable(topicType,"topic_type="+topicType+"&start_num=0&total_num="+perPageNum);
+    });
+
 
     /**
      * 点击导航栏，切换表格内容
      */
     var $div_li = $(".topbar li");
     $div_li.click(function(){
+        whichType =true;
         $(this).addClass("selected")            //当前<li>元素高亮
             .siblings().removeClass("selected");  //去掉其它同辈<li>元素的高亮
         var index =  $div_li.index(this)-1;  // 获取当前点击的<li>元素 在 全部li元素中的索引。
+        topicType = index;
         if(index > -1){
             $("tbody:eq("+index+")").show();
             $("tbody:gt("+index+")").hide();
             $("tbody:lt("+index+")").hide();
-            getSummaryTable(index,"");
+            $.post("http://202.114.114.34:8878/yuqing/servlet_query_total_records?topic_type="+topicType, function (allSimplePageNum) {//概要页面数据
+                allSimplePageNum = parseInt(allSimplePageNum.substring(1, allSimplePageNum.length - 1));
+                var allPageNum = parseInt(allSimplePageNum / perPageNum) + 1
+                setPage(document.getElementsByClassName("activeHolder")[0], allPageNum, 1);
+                getSummaryTable(topicType, "topic_type=" + topicType + "&start_num=0&total_num=" + perPageNum);
+            });
         }
     })
     /**
@@ -166,8 +196,13 @@ function getSummaryTable(topicType,canshu) {
     var listtypeArray = ["weifenlei","anjian","minsheng","renyuan","fuwu","guanli","shehui","xiaozang"];
     $("#"+listtypeArray[topicType]).html("");
     $("#shclProgress").show();
-    $.post("http://202.114.114.34:8878/yuqing/servlet_query_by_topic?topic_type="+topicType+"&start_num=0&total_num=100"+canshu, function (bangbangRawData) {//概要页面数据
-        alert("http://202.114.114.34:8878/yuqing/servlet_query_by_topic?topic_type="+topicType+"&start_num=0&total_num=100"+canshu);
+    var url = "";
+    if(whichType) { // 上面菜单
+        url = "http://202.114.114.34:8878/yuqing/servlet_query_by_topic?" + canshu;
+    }else{ // 查询
+        url = "http://202.114.114.34:8878/yuqing/servlet_query_by_condition?" + canshu;
+    }
+    $.post(url, function (bangbangRawData) {//概要页面数据
         $("#shclProgress").hide();
             //更改li颜色
         $(".topbar a").css("color","black");
@@ -178,7 +213,7 @@ function getSummaryTable(topicType,canshu) {
         var bangbangImage = "";
 
 
-        for (var i = 1; i < bangbangData.length; i++) {
+        for (var i = 0; i < bangbangData.length; i++) {
             if(bangbangData[i].q_img_url.length < 10){
                 bangbangImage = "http://202.114.114.34:8878/temp_imgs/weibo.jpg";
             }else{
@@ -219,7 +254,7 @@ function getSummaryTable(topicType,canshu) {
                 "<td style='height: 70px'>" + listTypeArray[bangbangData[i].q_topicType] + "</td>" +   //类别
                 "<td style='height: 70px'><select class='changeSelect' style='width:60px;height:20px;'><option>案件</option>" +
                 "<option>民生</option><option>人员</option><option>服务</option><option>管理</option>" +
-                "<option>社会</option><option>销赃</option></select><button class='changeType'>确定</button></td>"+ //移动到
+                "<option>社会</option></select><button class='changeType'>确定</button></td>"+ //移动到
                 "<td style='height: 70px;display: none' >" + bangbangData[i].q_source_category + "</td>" +   //老类型q_source_category
                 "<td style='height: 70px;display: none' >" + bangbangData[i].q_id + "</td>" ;   //id
             $("#"+listtypeArray[topicType]).append(a);
@@ -243,16 +278,6 @@ function getSummaryTable(topicType,canshu) {
 
 
         });
-
-        //设置分页
-        $("div.activeHolder").jPages({
-            containerID: listtypeArray[topicType], //存放表格的窗口标签ID
-            previous: "上一页", //指示首页的按钮
-            next: "下一页",//指示尾页的按钮
-            perPage: 10,//每页显示表格的行数
-            delay: 10 //分页时动画持续时间，0表示无动画
-
-        });
         //鼠标移入该行和鼠标移除该行的事件
         jQuery("#weiboInfo tr").mouseover(function(){
             jQuery(this).addClass("over");
@@ -264,4 +289,94 @@ function getSummaryTable(topicType,canshu) {
             $(this).addClass("click");
         });
     });
+}
+
+
+function updatePage(inx){
+    getSummaryTable(topicType,"topic_type="+topicType+"&start_num="+((inx-1)*perPageNum+1).toString()+"&total_num="+perPageNum+"&start_date="+startTime+"&end_date="+endTime+"&location="+sampleLoc+"&detail_location="+detailleLoc);
+}
+
+//container 容器，count 总页数 pageindex 当前页数
+function setPage(container, count, pageindex) {
+    var container = container;
+    var count = count;
+    var pageindex = pageindex;
+    var a = [];
+    //总页数少于10 全部显示,大于10 显示前3 后3 中间3 其余....
+    if (pageindex == 1) {
+        a[a.length] = "<a href=\"#\" class=\"prev unclick\">上一页</a>";
+    } else {
+        a[a.length] = "<a href=\"#\" class=\"prev\">上一页</a>";
+    }
+    function setPageList() {
+        if (pageindex == i) {
+            a[a.length] = "<a href=\"#\" class=\"on\">" + i + "</a>";
+        } else {
+            a[a.length] = "<a href=\"#\">" + i + "</a>";
+        }
+    }
+    //总页数小于10
+    if (count <= 10) {
+        for (var i = 1; i <= count; i++) {
+            setPageList();
+        }
+    }
+    //总页数大于10页
+    else {
+        if (pageindex <= 4) {
+            for (var i = 1; i <= 5; i++) {
+                setPageList();
+            }
+            a[a.length] = "...<a href=\"#\">" + count + "</a>";
+        } else if (pageindex >= count - 3) {
+            a[a.length] = "<a href=\"#\">1</a>...";
+            for (var i = count - 4; i <= count; i++) {
+                setPageList();
+            }
+        }
+        else { //当前页在中间部分
+            a[a.length] = "<a href=\"#\">1</a>...";
+            for (var i = pageindex - 2; i <= pageindex + 2; i++) {
+                setPageList();
+            }
+            a[a.length] = "...<a href=\"#\">" + count + "</a>";
+        }
+    }
+    if (pageindex == count) {
+        a[a.length] = "<a href=\"#\" class=\"next unclick\">下一页</a>";
+    } else {
+        a[a.length] = "<a href=\"#\" class=\"next\">下一页</a>";
+    }
+    container.innerHTML = a.join("");
+    //事件点击
+    var pageClick = function() {
+        var oAlink = container.getElementsByTagName("a");
+        var inx = pageindex; //初始的页码
+        oAlink[0].onclick = function() { //点击上一页
+            if (inx == 1) {
+                return false;
+            }
+            inx--;
+            setPage(container, count, inx);
+            updatePage(inx)
+            return false;
+        }
+        for (var i = 1; i < oAlink.length - 1; i++) { //点击页码
+            oAlink[i].onclick = function() {
+                inx = parseInt(this.innerHTML);
+                setPage(container, count, inx);
+                updatePage(inx)
+                return false;
+            }
+        }
+        oAlink[oAlink.length - 1].onclick = function() { //点击下一页
+            if (inx == count) {
+                return false;
+            }
+            inx++;
+            setPage(container, count, inx);
+            updatePage(inx);
+            return false;
+        }
+    } ()
 }

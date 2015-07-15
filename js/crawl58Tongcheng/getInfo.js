@@ -6,6 +6,8 @@ var goodClass = ["3"];//销赃类别
 var startTime = "2015-5-14";
 var endTime = "2015-6-15";
 
+var summaryName = "%E6%9C%B1%E7%BB%8F%E7%90%86";
+var summaryId = "48461690";
 
 function init(){
 
@@ -14,12 +16,12 @@ function init(){
             allSimplePageNum = parseInt(simpleData[0].total_count / perPageNum) + 1;
             setSimplePage(document.getElementsByClassName("summaryHolder")[0], allSimplePageNum, 1);
 
-            allDetailPageNum = parseInt(simpleData[0].publish_count / perPageNum) + 1;
+            allDetailPageNum = parseInt(simpleData[0].publish_count / detailPageNum) + 1;
             setDetialPage(document.getElementsByClassName("detailHolder")[0], allDetailPageNum, 1);
 
             $('#shclProgress').shCircleLoader({color: "blue"});
             getSummaryTable("query_type=1&seller_type=1&product_type=3&start_time=2015-5-14&end_time=2015-6-15&start_num=1&total_num=" + (perPageNum + 1).toString());
-            getDetail("user_name=%E6%9C%B1%E7%BB%8F%E7%90%86&user_id=48461690&start_num=1&total_num=" + (detailPageNum + 1).toString());
+            getDetail("user_name="+summaryName+"&user_id="+summaryId+"&start_num=1&total_num=" + (detailPageNum + 1).toString());
         });
 }
 
@@ -78,6 +80,10 @@ var getInformation = function () {
     $('#detailProgress').shCircleLoader({color: "blue"});
     $('#shclProgress').shCircleLoader({color: "blue"});
 
+    peopleClass = [];//卖家类型
+    siteClass = [];//网站
+    goodClass = [];//销赃类别
+
     startTime = $("#startTime").val();
     endTime = $("#endTime").val();
 
@@ -130,16 +136,19 @@ var getInformation = function () {
         alert("请填写查询条件！")
         return;
     }
-    //alert(peopleClass.toString() + "  " + siteClass.toString() + "  " + goodClass.toString() + "  " + startTime + "  " + endTime)
     var canshu = "query_type="+"1"+"&seller_type="+peopleClass.toString()+"&product_type="+goodClass.toString()+"&start_time="+startTime+"&end_time="+endTime+"&start_num=1&total_num="+(perPageNum+1).toString();
     $.post("http://202.114.114.34:8878/yuqing/servlet_simple_information?"+canshu, function (simpleRowData) {//概要页面数据
-        alert("http://202.114.114.34:8878/yuqing/servlet_simple_information?"+canshu)
         var simpleData = JSON.parse(simpleRowData);
-        allSimplePageNum = parseInt(simpleData[0].total_count / perPageNum) + 1;
-        setSimplePage(document.getElementsByClassName("summaryHolder")[0], allSimplePageNum, 1);
+        if(simpleData[0]) {
+            allSimplePageNum = parseInt(simpleData[0].total_count / perPageNum) + 1;
+            setSimplePage(document.getElementsByClassName("summaryHolder")[0], allSimplePageNum, 1);
 
-        $('#shclProgress').shCircleLoader({color: "blue"});
-        getSummaryTable(canshu)
+            $('#shclProgress').shCircleLoader({color: "blue"});
+            getSummaryTable(canshu)
+        }else{
+            $('#shclProgress').hide();
+            setSimplePage(document.getElementsByClassName("summaryHolder")[0], 1, 1);
+        }
     });
 }
 
@@ -173,11 +182,14 @@ var getSummaryTable = function (canshu) {
             var trSeq = $(this).parent().parent().find("tr").index($(this).parent());
             //alert("第" + (trSeq) + "行，第" + (tdSeq + 1) + "列");
             if(tdSeq == 0) {
-                var summaryName= summaryData[parseInt(trSeq)+1].seller_name;
-                var summaryId = summaryData[parseInt(trSeq)+1].seller_id;
+                summaryName= summaryData[parseInt(trSeq)+1].seller_name;
+                summaryId = summaryData[parseInt(trSeq)+1].seller_id;
                 console.log(summaryName+"   "+summaryId)
                 $("#detailList").empty();
-                var detailCanshu ="user_name="+summaryName+"&user_id="+summaryId+"&start_num=0&total_num="+(perPageNum+1).toString();
+                var detailCanshu ="user_name="+summaryName+"&user_id="+summaryId+"&start_num=0&total_num="+(detailPageNum+1).toString();
+
+                var allDetailPageNum = parseInt(summaryData[parseInt(trSeq)+1].publish_count / detailPageNum) + 1;
+                setDetialPage(document.getElementsByClassName("detailHolder")[0], allDetailPageNum, 1);
                 getDetail(detailCanshu)
             }
         })
@@ -188,6 +200,9 @@ function getDetail(canshu){
     $("#detailList").empty();
     $('#detailProgress').show();
     $.post("http://202.114.114.34:8878/yuqing/servlet_detail_information?"+canshu, function (detailRawData) {//初始详细页面数据
+
+
+
         $('#detailProgress').hide();
         var detailData = JSON.parse(detailRawData);
         for (var i = 0; i < detailData.length; i++) {
@@ -296,7 +311,7 @@ function setSimplePage(container, count, pageindex) {
 
 
 function updateDetialPage(inx){
-    getSummaryTable("douban_type="+orderType+"&order_type="+activeType+"&start_num="+((inx-1)*perPageNum+1).toString()+"&total_num="+(perPageNum+1).toString());
+    getDetail("user_name="+summaryName+"&user_id="+summaryId+"&start_num="+((inx-1)*detailPageNum+1).toString()+"&total_num="+(detailPageNum+1).toString());
 }
 
 //container 容器，count 总页数 pageindex 当前页数
@@ -312,6 +327,7 @@ function setDetialPage(container, count, pageindex) {
         a[a.length] = "<a href=\"#\" class=\"prev\">上一页</a>";
     }
     function setPageList() {
+
         if (pageindex == i) {
             a[a.length] = "<a href=\"#\" class=\"on\">" + i + "</a>";
         } else {
