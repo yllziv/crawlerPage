@@ -33,34 +33,34 @@ var getInformation = function () {
 
 var getSummaryTable = function (canshu) {
     $("#shclProgress").show();
-    $.post("http://202.114.114.34:8878/yuqing/servlet_bangbang_information?"+canshu, function (bangbangRawData) {//概要页面数据
+    $.post("http://202.114.114.34:8878/yuqing/servlet_house_information?"+canshu, function (fangwuRawData) {//概要页面数据
         $("#shclProgress").hide();
         $("#bangbangList").empty();
-        var bangbangData = JSON.parse(bangbangRawData);
-        for (var i = 1; i < bangbangData.length; i++) {
+        var fangwuData = JSON.parse(fangwuRawData);
+
+        for (var i = 1; i < fangwuData.length; i++) {
             var bangbangImage = "";
 
-            if(bangbangData[i].bb_img_url.length < 10){
+            //if(fangwuData[i].bb_img_url.length < 10){
                 bangbangImage = "http://202.114.114.34:8878/temp_imgs/bangbang.jpg";
-            }else{
-                bangbangImage = "http://202.114.114.34:8878/temp_imgs/bangbang/"+ bangbangData[i].bangbang_id +".jpg"
-            }
+            //}else{
+            //    bangbangImage = "http://202.114.114.34:8878/temp_imgs/bangbang/"+ fangwuData[i].house_id +".jpg"
+            //}
 
-            var bangbangContent = bangbangData[i].bb_content;
-            if(bangbangContent.length > 111){
-                bangbangContent = bangbangContent.substr(0,110)
+            var fangwuContent = fangwuData[i].house_newmessage;
+            if(fangwuContent.length > 111){
+                fangwuContent = fangwuContent.substr(0,110)
             }
 
             var a =
-                "<tr></tr><td style='height: 70px'>" + bangbangData[i].bangbang_title +"</td>" +   //新闻标题
+                "<tr></tr><td style='height: 70px'>" + fangwuData[i].house_title +"</td>" +   //房屋信息标题
                 "<td style='height: 70px'><img src= " + bangbangImage + " style='width: 50px;height: 44.5px'></td>" +   //图片
-                "<td style='height: 70px'>" + bangbangContent + "</td>" +   //新闻内容
-                "<td style='height: 70px'>" + "2015年"+ bangbangData[i].bb_pub_time.month+"月"+
-                + bangbangData[i].bb_pub_time.day+"日"+ bangbangData[i].bb_pub_time.hours+"时"+
-                + bangbangData[i].bb_pub_time.minutes+"分"+ bangbangData[i].bb_pub_time.seconds+"秒"+"</td>" +   //发布时间
-                "<td style='height: 70px;color: red;font-size: 15px ; font-weight:bold;'>" + bangbangData[i].bb_read_times + "</td>" +   //阅读次数
-                "<td style='height: 70px;color: red;font-size: 15px ; font-weight:bold;'>" + bangbangData[i].bb_response_times + "</td>" +   //评论次数
-                "<td style='height: 70px'><a target='_blank' href = '" + bangbangData[i].bangbang_url + "'>点击查看详细信息</a></td>";    //详细信息
+                "<td style='height: 70px'>" + fangwuContent + "</td>" +   //房屋信息
+                "<td style='height: 70px'>" + fangwuData[i].house_price + "</td>" +   //房屋价格
+                "<td style='height: 70px;'>" + fangwuData[i].house_place + "</td>" +   //房屋地址
+                "<td style='height: 70px;color: red;font-size: 15px ; font-weight:bold;'>" + fangwuData[i].kiapantime_start + "</td>" +   //开盘时间
+                "<td style='height: 70px;'>" + fangwuData[i].house_telephone + "</td>" +   //联系电话
+                "<td style='height: 70px'><a target='_blank' href = '" + fangwuData[i].house_url + "'>点击查看详细信息</a></td>";    //详细信息
             $("#bangbangList").append(a);
         }
         //设置分页

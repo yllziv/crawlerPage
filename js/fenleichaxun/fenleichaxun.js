@@ -25,6 +25,8 @@
 //管理 5
 //社会 6
 //销赃 7
+// 获取总数：
+//http://202.114.114.34:8878/yuqing/servlet_query_total_records?topic_type=0
 //
 //
 //q_source_category 旧类型
@@ -251,7 +253,7 @@ function getSummaryTable(topicType,canshu) {
                 "<td style='height: 70px'>" + didian[parseInt(10*Math.random())]+ "</td>" +   //地点
                 "<td style='height: 70px'>" + sourcePage + "</td>" +   //来源
                 "<td style='height: 70px;color: red;font-size: 15px ; font-weight:bold;'>" + bangbangData[i].q_focus_num + "</td>" +   //关注度
-                "<td style='height: 70px'><a href = '" + "'>点击查看详细信息</a></td>" +    //详细信息
+                "<td style='height: 70px'><a target='_blank' href = '" + "'>点击查看详细信息</a></td>" +    //详细信息
                 "<td style='height: 70px'>" + listTypeArray[bangbangData[i].q_topicType] + "</td>" +   //类别
                 "<td style='height: 70px'><select class='changeSelect' style='width:60px;height:20px;'><option>案件</option>" +
                 "<option>民生</option><option>人员</option><option>服务</option><option>管理</option>" +
@@ -287,6 +289,7 @@ function getSummaryTable(topicType,canshu) {
             next: "下一页",//指示尾页的按钮
             perPage: 10,//每页显示表格的行数
             delay: 10 //分页时动画持续时间，0表示无动画
+
         });
         //鼠标移入该行和鼠标移除该行的事件
         jQuery("#weiboInfo tr").mouseover(function(){
