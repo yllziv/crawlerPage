@@ -2,7 +2,7 @@ var perPageNum = 12;     //每页显示的条数
 var detailPageNum = 7;     //每页显示的条数
 var peopleClass = ["1"];//卖家类型
 var siteClass = ["3"];//网站
-var goodClass = ["3"];//销赃类别
+var goodClass = ["3"];//销售类别
 var startTime = "2015-5-14";
 var endTime = "2015-6-15";
 
@@ -82,7 +82,7 @@ var getInformation = function () {
 
     peopleClass = [];//卖家类型
     siteClass = [];//网站
-    goodClass = [];//销赃类别
+    goodClass = [];//销售类别
 
     startTime = $("#startTime").val();
     endTime = $("#endTime").val();
@@ -201,13 +201,12 @@ function getDetail(canshu){
     $('#detailProgress').show();
     $.post("http://202.114.114.34:8878/yuqing/servlet_detail_information?"+canshu, function (detailRawData) {//初始详细页面数据
 
-
-
         $('#detailProgress').hide();
         var detailData = JSON.parse(detailRawData);
         for (var i = 0; i < detailData.length; i++) {
             var a = "<tr><td>" + i + "</td>" +//编号
-                "<td><img src='../images/"+rd(1,20).toString()+".jpg' style='width: 50px;height: 44.5px'></td>" +//图片
+                //"<td><img src='../images/"+rd(1,20).toString()+".jpg' style='width: 50px;height: 44.5px'></td>" +//图片
+                "<td><img src="+detailData[i].image_url_address+" style='width: 50px;height: 44.5px'></td>" +//图片
                 "<td>" +  detailData[i].seller_location + "</td>" +//区域
                 "<td>" + detailData[i].seller_name + "</td>" +//卖家姓名
                 "<td>" + replacePos(detailData[i].full_phone_number) + "</td>" +//卖家手机号

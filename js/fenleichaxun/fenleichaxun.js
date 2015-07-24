@@ -190,7 +190,7 @@ function getList(listArray) {
 
 
 function getSummaryTable(topicType,canshu) {
-    var listTypeArray = ["未分类","案件","民生","人员","服务","管理","社会","销赃"];
+    var listTypeArray = ["未分类","案件","民生","人员","服务","管理","社会","销售"];
     var didian = ["武昌区","江汉区","江岸区","汉阳区","青山区","硚口区","汉南区","洪山区","新洲区","东西湖区","其他"]
     var listtypeArray = ["weifenlei","anjian","minsheng","renyuan","fuwu","guanli","shehui","xiaozang"];
     $("#"+listtypeArray[topicType]).html("");
