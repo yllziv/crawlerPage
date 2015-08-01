@@ -69,7 +69,7 @@ var getSummaryTable = function (canshu) {
                 "<td style='height: 70px;'>" + tuniuData[i].tuniu_opentime + "</td>" +   //景点开放时间
                 "<td style='height: 70px;color: red;font-size: 15px ; font-weight:bold;'>" + tuniuData[i].tuniu_buy_num + "</td>" +   //购买次数
                 "<td style='height: 70px;color: red;font-size: 15px ; font-weight:bold;'>" + tuniuData[i].tuniu_comment_num + "</td>" +   //评论次数
-                "<td style='height: 70px'><a target='_blank' href = '" + tuniuData[i].tuniu_url + "'>点击查看详细信息</a></td>";    //详细信息
+                "<td style='height: 70px'><a target='_blank' href = '" + tuniuData[i].tuniu_url + "'>点击查看详情</a></td>";    //详情
             $("#tuniuList").append(a);
         }
         //鼠标移入该行和鼠标移除该行的事件

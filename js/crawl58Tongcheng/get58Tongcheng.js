@@ -44,13 +44,22 @@ function rd(n,m){
 // 商品类别索引
 var convertType = function(s){
     var type = parseInt(s);
-    if(s == 2){
+    if(type == 5){
+        return "平板电脑";
+    }
+    if(type == 4){
+        return "二手手机";
+    }
+    if(type == 3){
+        return "笔记本";
+    }
+    if(type == 2){
         return "摩托车";
     }
-    if(s == 1){
+    if(type == 1){
         return "电动车";
     }
-    if(s == 0){
+    if(type == 0){
         return "自行车";
     }
 
@@ -160,9 +169,9 @@ var getSummaryTable = function (canshu) {
 
         var summaryData = JSON.parse(summaryRawData);
         for (var i = 1; i < summaryData.length; i++) {
-            var a = "<tr> <td><input type='button' style='background-color: transparent; border: 0; background: none' value=" + summaryData[i].seller_name + "></th>" +//编号
+            var a = "<tr> <td>" + summaryData[i].seller_name + "</th>" +//编号
                 "<td>" + replacePos(summaryData[i].seller_phone) + "</td>" +//卖家手机号
-                "<td style='color: red;font-size: 15px ; font-weight:bold;'>" + summaryData[i].publish_count + "</td>"//详细信息，网址
+                "<td style='color: red;font-size: 15px ; font-weight:bold;'>" + summaryData[i].publish_count + "</td>"//详情，网址
             $("#summaryList").append(a);
         }
         //鼠标移入该行和鼠标移除该行的事件
@@ -212,7 +221,7 @@ function getDetail(canshu){
                 "<td>" + replacePos(detailData[i].full_phone_number) + "</td>" +//卖家手机号
                 "<td>" +  detailData[i].product_pub_time + "</td>" +//发布日期
                 "<td>" +  convertType(detailData[i].product_type) + "</td>" +//类别
-                "<td><a href='"+detailData[i].product_url_address+"' target='_blank'>网址</a></td>"//详细信息，网址
+                "<td><a href='"+detailData[i].product_url_address+"' target='_blank'>网址</a></td>"//详情，网址
             $("#detailList").append(a);
         }
     });

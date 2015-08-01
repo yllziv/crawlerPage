@@ -3,18 +3,18 @@
 <head>
     <title>首页</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
     <link rel="stylesheet" type="text/css" href="../css/initi.css"/>
     <link rel="stylesheet" type="text/css" href="../css/tableAction.css"/>
     <link rel="stylesheet" type="text/css" href="../css/index.css"/>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css"/>
-    <link rel="stylesheet" href="../css/jPages.css">
+    <link rel="stylesheet" type="text/css" href="../css/jPages.css">
 
     <script type="text/javascript" src="../lib/jquery-2.1.1.js"></script>
     <script type="text/javascript" src="../lib/laydate.js"></script>
 
-    <script charset="gb2312" src="../js/crawl58Tongcheng/getInfo.js"></script>
+    <script charset="gb2312" src="../js/crawl58Tongcheng/get58Tongcheng.js"></script>
     <script src="../js/jqueryplugin/jquery.shCircleLoader.js" type="text/javascript"></script>
-
 
 </head>
 <body onload="init()">
@@ -33,7 +33,6 @@
     </div>
 </div>
 <div class="row">
-
     <div class="col-md-1" alt="大类" style="border:1px solid #e1e1e1; height: 600px">
         <div class="row" alt="分类查询" style="padding-top: 40px; width: 100px;height: 150px ;">
             <a  href="./fenleichaxun.html"  role="button">
@@ -58,7 +57,7 @@
     <div class="col-md-8">
         <div class="col-md-4">
             <div class="table-responsive">
-                <label style="align-content: center;padding-top: 10px">销售分析</label>
+                <label style="align-content: center;padding-top: 10px;">销售分析</label>
                 <table class="table table-bordered" id="summaryInfo">
                     <thead>
                     <tr>
@@ -76,7 +75,7 @@
         </div>
         <div class="col-md-8">
             <div class="table-responsive">
-                <label style="align-content: center;padding-top: 10px">详细信息</label>
+                <label style="align-content: center;padding-top: 10px">详情</label>
                 <table class="table table-bordered" id="detailInfo">
                     <thead>
                     <tr>
@@ -87,7 +86,7 @@
                         <th>卖家手机号</th>
                         <th>发布日期</th>
                         <th>类别</th>
-                        <th>详细信息</th>
+                        <th>详情</th>
                     </tr>
                     </thead>
                     <tbody id="detailList"></tbody>
@@ -157,15 +156,15 @@
                     <input type="checkbox" id="zixingche" value="option2"> 自行车
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="bijiben" value="option2" disabled> 笔记本
+                    <input type="checkbox" id="bijiben" value="option2"> 笔记本
                 </label>
             </div>
             <div class="row" style="padding-top: 10px">
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="ershoushouji" value="option2" disabled> 二手手机
+                    <input type="checkbox" id="ershoushouji" value="option2"> 二手手机
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" id="pingbandiannao" value="option2" disabled> 平板电脑
+                    <input type="checkbox" id="pingbandiannao" value="option2"> 平板电脑
                 </label>
             </div>
         </div>

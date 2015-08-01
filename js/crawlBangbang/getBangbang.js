@@ -70,7 +70,7 @@ var getSummaryTable = function (canshu) {
                 + bangbangData[i].bb_pub_time.minutes+"分"+ bangbangData[i].bb_pub_time.seconds+"秒"+"</td>" +   //发布时间
                 "<td style='height: 70px;color: red;font-size: 15px ; font-weight:bold;'>" + bangbangData[i].bb_read_times + "</td>" +   //阅读次数
                 "<td style='height: 70px;color: red;font-size: 15px ; font-weight:bold;'>" + bangbangData[i].bb_response_times + "</td>" +   //评论次数
-                "<td style='height: 70px'><a target='_blank' href = '" + bangbangData[i].bangbang_url + "'>点击查看详细信息</a></td>";    //详细信息
+                "<td style='height: 70px'><a target='_blank' href = '" + bangbangData[i].bangbang_url + "'>点击查看详情</a></td>";    //详情
             $("#bangbangList").append(a);
         }
         //鼠标移入该行和鼠标移除该行的事件 :gt(0)

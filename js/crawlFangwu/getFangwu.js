@@ -69,7 +69,7 @@ var getSummaryTable = function (canshu) {
                 "<td style='height: 70px;'>" + fangwuData[i].house_place + "</td>" +   //房屋地址
                 "<td style='height: 70px;color: red;font-size: 15px ; font-weight:bold;'>" + fangwuData[i].kiapantime_start + "</td>" +   //开盘时间
                 "<td style='height: 70px;'>" + fangwuData[i].house_telephone + "</td>" +   //联系电话
-                "<td style='height: 70px'><a target='_blank' href = '" + fangwuData[i].house_url + "'>点击查看详细信息</a></td>";    //详细信息
+                "<td style='height: 70px'><a target='_blank' href = '" + fangwuData[i].house_url + "'>点击查看详情</a></td>";    //详情
             $("#bangbangList").append(a);
         }
         //鼠标移入该行和鼠标移除该行的事件

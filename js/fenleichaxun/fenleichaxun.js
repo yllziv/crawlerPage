@@ -1,3 +1,45 @@
+// 日期
+//q_source
+//58同城：0
+//百姓网：1
+//赶集网：2
+//跳蚤市场：3
+//淘宝二手：4
+// 生活：6
+//本地宝：5
+//豆瓣同城：7
+//大麦网：8
+//新浪微博：9
+//今日头条：10
+//途牛网：11
+//阿里旅游：12
+//帮帮网：13
+//
+//
+//q_topicType  新类型n
+//未分类 0
+//案件 1
+//民生 2
+//人员 3
+//服务 4
+//管理 5
+//社会 6
+//销赃 7
+// 获取总数：
+// tp://202.114.114.34:8878/yuqing/servlet_query_total_records?topic_type=0
+//
+//
+//q_source_category 旧类型
+//百姓生活  4
+//旅游 6
+//社会新闻 1
+//演出活动 5
+//楼房交易 2
+//商场促销 3
+//销赃分析 7
+
+
+
 var perPageNum = 6;     //每页显示的条数
 var topicType = 0;
 var sampleLoc = "洪山区";
@@ -249,7 +291,7 @@ function getSummaryTable(topicType,canshu) {
                 "<td style='height: 70px'>" + didian[parseInt(10*Math.random())]+ "</td>" +   //地点
                 "<td style='height: 70px'>" + sourcePage + "</td>" +   //来源
                 "<td style='height: 70px;color: red;font-size: 15px ; font-weight:bold;'>" + bangbangData[i].q_focus_num + "</td>" +   //关注度
-                "<td style='height: 70px'><a target='_blank' href = '" + "'>点击查看详细信息</a></td>" +    //详细信息
+                "<td style='height: 70px'><a target='_blank' href = '" + "'>点击查看详情</a></td>" +    //详情
                 "<td style='height: 70px'>" + listTypeArray[bangbangData[i].q_topicType] + "</td>" +   //类别
                 "<td style='height: 70px'><select class='changeSelect' style='width:60px;height:20px;'><option>案件</option>" +
                 "<option>民生</option><option>人员</option><option>服务</option><option>管理</option>" +

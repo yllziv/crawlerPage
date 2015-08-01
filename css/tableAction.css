@@ -5,8 +5,9 @@
     background:#ffffff;
 }
 .over{
-    background:#66CCFF;
+    background:rgba(182, 220, 237, 0.88);
+    cursor:pointer;
 }
 .click{
-    background: #4aacb7;
+    background: #a7e5ff;
 }
