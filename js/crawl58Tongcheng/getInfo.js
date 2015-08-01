@@ -166,7 +166,7 @@ var getSummaryTable = function (canshu) {
             $("#summaryList").append(a);
         }
         //鼠标移入该行和鼠标移除该行的事件
-        jQuery("#summaryInfo tr").mouseover(function(){
+        jQuery("#summaryInfo tr:gt(0)").mouseover(function(){
             jQuery(this).addClass("over");
         }).mouseout(function(){
             jQuery(this).removeClass("over");
@@ -176,12 +176,12 @@ var getSummaryTable = function (canshu) {
             $(this).addClass("click");
         });
         //获得行列号
-        $("#summaryInfo td").click(function () {
+        $("#summaryInfo tr").click(function () {
             $('#detailProgress').show();
-            var tdSeq = $(this).parent().find("td").index($(this));
-            var trSeq = $(this).parent().parent().find("tr").index($(this).parent());
+            var tdSeq = $(this).find("td").index($(this));
+            var trSeq = $(this).parent().find("tr").index($(this).parent());
             //alert("第" + (trSeq) + "行，第" + (tdSeq + 1) + "列");
-            if(tdSeq == 0) {
+            if(1) {
                 summaryName= summaryData[parseInt(trSeq)+1].seller_name;
                 summaryId = summaryData[parseInt(trSeq)+1].seller_id;
                 console.log(summaryName+"   "+summaryId)
@@ -200,7 +200,7 @@ function getDetail(canshu){
     $("#detailList").empty();
     $('#detailProgress').show();
     $.post("http://202.114.114.34:8878/yuqing/servlet_detail_information?"+canshu, function (detailRawData) {//初始详细页面数据
-
+        //alert("http://202.114.114.34:8878/yuqing/servlet_detail_information?"+canshu)
         $('#detailProgress').hide();
         var detailData = JSON.parse(detailRawData);
         for (var i = 0; i < detailData.length; i++) {

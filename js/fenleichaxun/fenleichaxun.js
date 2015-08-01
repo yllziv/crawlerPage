@@ -201,7 +201,8 @@ function getSummaryTable(topicType,canshu) {
     }else{ // 查询
         url = "http://202.114.114.34:8878/yuqing/servlet_query_by_condition?" + canshu;
     }
-    $.post(url, function (bangbangRawData) {//概要页面数据
+    $.post(url, function (bangbangRawData) {
+        alert(url)
         $("#shclProgress").hide();
             //更改li颜色
         $(".topbar a").css("color","black");
@@ -215,7 +216,7 @@ function getSummaryTable(topicType,canshu) {
             if(bangbangData[i].q_img_url.length < 10){
                 bangbangImage = "http://202.114.114.34:8878/temp_imgs/weibo.jpg";
             }else{
-                bangbangImage = "http://202.114.114.34:8878/temp_imgs/"+ bangbangData[i].q_id +".jpg"
+                bangbangImage = bangbangData[i].q_img_url
             }
 
             var bangbangContent = bangbangData[i].q_content;
@@ -276,7 +277,7 @@ function getSummaryTable(topicType,canshu) {
 
         });
         //鼠标移入该行和鼠标移除该行的事件
-        jQuery("#weiboInfo tr").mouseover(function(){
+        jQuery("#weiboInfo tr:gt(0)").mouseover(function(){
             jQuery(this).addClass("over");
         }).mouseout(function(){
             jQuery(this).removeClass("over");

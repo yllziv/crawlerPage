@@ -53,7 +53,7 @@ var getSummaryTable = function (canshu) {
             if(weiboData[i].image_url.length < 2){
                 weiboImage = "http://202.114.114.34:8878/temp_imgs/weibo.jpg";
             }else{
-                weiboImage = "http://202.114.114.34:8878/temp_imgs/weibo/"+ weiboData[i].weibo_id +".jpg"
+                weiboImage =  weiboData[i].image_url
             }
             if(weiboData[i].weibo_title.length < 2 &&weiboData[i].weibo_content.length > 21){
                 weiboData[i].weibo_title = weiboData[i].weibo_content.substring(0,20)
@@ -85,7 +85,7 @@ var getSummaryTable = function (canshu) {
             $("#weiboList").append(a);
         }
         //鼠标移入该行和鼠标移除该行的事件
-        jQuery("#weiboInfo tr").mouseover(function(){
+        jQuery("#weiboInfo tr:gt(0)").mouseover(function(){
             jQuery(this).addClass("over");
         }).mouseout(function(){
             jQuery(this).removeClass("over");

@@ -53,7 +53,7 @@ var getSummaryTable = function (canshu) {
             if(bangbangData[i].bb_img_url.length < 10){
                 bangbangImage = "http://202.114.114.34:8878/temp_imgs/bangbang.jpg";
             }else{
-                bangbangImage = "http://202.114.114.34:8878/temp_imgs/bangbang/"+ bangbangData[i].bangbang_id +".jpg"
+                bangbangImage = bangbangData[i].bb_img_url;
             }
 
             var bangbangContent = bangbangData[i].bb_content;
@@ -73,8 +73,8 @@ var getSummaryTable = function (canshu) {
                 "<td style='height: 70px'><a target='_blank' href = '" + bangbangData[i].bangbang_url + "'>点击查看详细信息</a></td>";    //详细信息
             $("#bangbangList").append(a);
         }
-        //鼠标移入该行和鼠标移除该行的事件
-        jQuery("#bangbangInfo tr").mouseover(function(){
+        //鼠标移入该行和鼠标移除该行的事件 :gt(0)
+        jQuery("#bangbangInfo tr:gt(0)").mouseover(function(){
             jQuery(this).addClass("over");
         }).mouseout(function(){
             jQuery(this).removeClass("over");

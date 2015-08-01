@@ -45,7 +45,6 @@ var getSummaryTable = function (canshu) {
     $("#shclProgress").show();
     $.post("http://202.114.114.34:8878/yuqing/servlet_house_information?"+canshu, function (fangwuRawData) {//概要页面数据
         $("#shclProgress").hide();
-
         var fangwuData = JSON.parse(fangwuRawData);
 
         for (var i = 1; i < fangwuData.length; i++) {
@@ -74,7 +73,7 @@ var getSummaryTable = function (canshu) {
             $("#bangbangList").append(a);
         }
         //鼠标移入该行和鼠标移除该行的事件
-        jQuery("#bangbangInfo tr").mouseover(function(){
+        jQuery("#bangbangInfo tr:gt(0)").mouseover(function(){
             jQuery(this).addClass("over");
         }).mouseout(function(){
             jQuery(this).removeClass("over");

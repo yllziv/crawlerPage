@@ -59,7 +59,7 @@ var getSummaryTable = function (canshu) {
             if(tuniuData[i].tuniu_img_url.length < 20){
                 tuniuImage = "http://202.114.114.34:8878/temp_imgs/tuniu.jpg";
             }else{
-                tuniuImage = "http://202.114.114.34:8878/temp_imgs/tuniu/"+ tuniuData[i].tuniu_id +".jpg"
+                tuniuImage = tuniuData[i].tuniu_img_url;
             }
             var a =
                 "<tr></tr><td style='height: 70px'>" + tuniuTitle +"</td>" +   //景点名称
@@ -73,7 +73,7 @@ var getSummaryTable = function (canshu) {
             $("#tuniuList").append(a);
         }
         //鼠标移入该行和鼠标移除该行的事件
-        jQuery("#tuniuInfo tr").mouseover(function(){
+        jQuery("#tuniuInfo tr:gt(0)").mouseover(function(){
             jQuery(this).addClass("over");
         }).mouseout(function(){
             jQuery(this).removeClass("over");

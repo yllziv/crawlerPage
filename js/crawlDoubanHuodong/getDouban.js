@@ -1,5 +1,5 @@
 var perPageNum = 7;     //每页显示的条数
-var orderType = 0;      // 排序方式
+var orderType = -1;      // 排序方式
 var activeType =0;      // 活动类型
 
 //初始化页面
@@ -98,7 +98,7 @@ var getSummaryTable = function (canshu) {
         for (var i = 1; i < activeData.length; i++) {
             var a =
                 "<tr></tr><td style='height: 70px'>" + activeData[i].douban_id +"</td>" +   //ID
-                "<td style='height: 70px'><img src= " + "http://202.114.114.34:8878/temp_imgs/douban/"+activeData[i].douban_id+".jpg" + " style='width: 50px;height: 44.5px'></td>" +   //图片
+                "<td style='height: 70px'><img src= " + activeData[i].douban_img + " style='width: 50px;height: 44.5px'></td>" +   //图片
                 "<td style='height: 70px'>" + activeData[i].douban_title + "</td>" +   //标题
                 "<td style='height: 70px'>" + activeData[i].douban_date + "</td>" +   //活动时间
                 "<td style='height: 70px'>" + activeData[i].douban_pos + "</td>" +   //活动地址
@@ -109,7 +109,7 @@ var getSummaryTable = function (canshu) {
         }
 
         //鼠标移入该行和鼠标移除该行的事件
-        jQuery("#activeInfo tr").mouseover(function(){
+        jQuery("#activeInfo tr:gt(0)").mouseover(function(){
             jQuery(this).addClass("over");
         }).mouseout(function(){
             jQuery(this).removeClass("over");
