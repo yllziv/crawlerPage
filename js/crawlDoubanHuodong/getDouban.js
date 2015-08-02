@@ -96,9 +96,19 @@ var getSummaryTable = function (canshu) {
 
         var activeData = JSON.parse(activeRawData);
         for (var i = 1; i < activeData.length; i++) {
+
+            var bangbangImage = "";
+
+            if(activeData[i].douban_img.length < 10){
+                bangbangImage = "http://202.114.114.34:8878/temp_imgs/douban.jpg";
+            }else{
+                bangbangImage = "http://202.114.114.34:8878/temp_imgs/show/"+activeData[i].douban_id+".jpg";
+                //bangbangImage = activeData[i].douban_img
+            }
+
             var a =
                 "<tr></tr><td style='height: 70px'>" + activeData[i].douban_id +"</td>" +   //ID
-                "<td style='height: 70px'><img src= " + activeData[i].douban_img + " style='width: 50px;height: 44.5px'></td>" +   //图片
+                "<td style='height: 70px'><img src= " + bangbangImage + " style='width: 50px;height: 44.5px'></td>" +   //图片
                 "<td style='height: 70px'>" + activeData[i].douban_title + "</td>" +   //标题
                 "<td style='height: 70px'>" + activeData[i].douban_date + "</td>" +   //活动时间
                 "<td style='height: 70px'>" + activeData[i].douban_pos + "</td>" +   //活动地址

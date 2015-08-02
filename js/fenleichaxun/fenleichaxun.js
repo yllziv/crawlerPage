@@ -89,7 +89,6 @@ function init(){
         getSummaryTable(topicType,"topic_type="+topicType+"&start_num=0&total_num="+perPageNum);
     });
 
-
     /**
      * 点击导航栏，切换表格内容
      */
@@ -258,12 +257,13 @@ function getSummaryTable(topicType,canshu) {
             if(bangbangData[i].q_img_url.length < 10){
                 bangbangImage = "http://202.114.114.34:8878/temp_imgs/weibo.jpg";
             }else{
-                bangbangImage = bangbangData[i].q_img_url
+                bangbangImage = "http://202.114.114.34:8878/temp_imgs/calss_query/"+bangbangData[i].q_id+".jpg";
+                //bangbangImage = bangbangData[i].q_img_url
             }
 
             var bangbangContent = bangbangData[i].q_content;
-            if(bangbangContent.length > 111){
-                bangbangContent = bangbangContent.substr(0,110)
+            if(bangbangContent.length > 51){
+                bangbangContent = bangbangContent.substr(0,50)
             }
 
             var sourcePage = "";

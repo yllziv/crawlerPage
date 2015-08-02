@@ -43,7 +43,7 @@ var getSummaryTable = function (canshu) {
     $("#shclProgress").show();
     $.post("http://202.114.114.34:8878/yuqing/servlet_tuniu_information?" + canshu, function (tuniuRawData) {//概要页面数据
         $("#shclProgress").hide();
-
+        //alert("http://202.114.114.34:8878/yuqing/servlet_tuniu_information?" + canshu);
         var tuniuData = JSON.parse(tuniuRawData);
         for (var i = 1; i < tuniuData.length; i++) {
 
@@ -59,7 +59,8 @@ var getSummaryTable = function (canshu) {
             if(tuniuData[i].tuniu_img_url.length < 20){
                 tuniuImage = "http://202.114.114.34:8878/temp_imgs/tuniu.jpg";
             }else{
-                tuniuImage = tuniuData[i].tuniu_img_url;
+                tuniuImage = "http://202.114.114.34:8878/temp_imgs/travel/"+tuniuData[i].tuniu_id+".jpg";
+                //tuniuImage = tuniuData[i].tuniu_img_url;
             }
             var a =
                 "<tr></tr><td style='height: 70px'>" + tuniuTitle +"</td>" +   //景点名称

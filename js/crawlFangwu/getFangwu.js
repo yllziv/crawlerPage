@@ -45,6 +45,7 @@ var getSummaryTable = function (canshu) {
     $("#shclProgress").show();
     $.post("http://202.114.114.34:8878/yuqing/servlet_house_information?"+canshu, function (fangwuRawData) {//概要页面数据
         $("#shclProgress").hide();
+        //alert("http://202.114.114.34:8878/yuqing/servlet_house_information?"+canshu)
         var fangwuData = JSON.parse(fangwuRawData);
 
         for (var i = 1; i < fangwuData.length; i++) {
@@ -53,12 +54,14 @@ var getSummaryTable = function (canshu) {
             if(fangwuData[i].image_url.length < 10){
                 bangbangImage = "http://202.114.114.34:8878/temp_imgs/bangbang.jpg";
             }else{
-                bangbangImage = fangwuData[i].image_url
+                bangbangImage = "http://202.114.114.34:8878/temp_imgs/house/"+fangwuData[i].house_id+".jpg";
+                //bangbangImage = fangwuData[i].image_url
             }
 
             var fangwuContent = fangwuData[i].house_newmessage;
-            if(fangwuContent.length > 111){
-                fangwuContent = fangwuContent.substr(0,110)
+            if(fangwuContent.length > 41){
+                fangwuContent = fangwuContent.substr(0,40)
+                fangwuContent = fangwuContent + "......"
             }
 
             var a =

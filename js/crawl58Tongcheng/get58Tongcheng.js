@@ -168,8 +168,14 @@ var getSummaryTable = function (canshu) {
         $('#shclProgress').hide();
 
         var summaryData = JSON.parse(summaryRawData);
+
         for (var i = 1; i < summaryData.length; i++) {
-            var a = "<tr> <td>" + summaryData[i].seller_name + "</th>" +//编号
+            var sellerName = summaryData[i].seller_name;
+            if(sellerName.indexOf("系") != -1){
+                sellerName = sellerName.substring(5,sellerName.length)
+            }
+
+            var a = "<tr> <td>" + sellerName + "</th>" +//编号
                 "<td>" + replacePos(summaryData[i].seller_phone) + "</td>" +//卖家手机号
                 "<td style='color: red;font-size: 15px ; font-weight:bold;'>" + summaryData[i].publish_count + "</td>"//详情，网址
             $("#summaryList").append(a);
@@ -185,18 +191,17 @@ var getSummaryTable = function (canshu) {
             $(this).addClass("click");
         });
         //获得行列号
-        $("#summaryInfo tr").click(function () {
+        $("#summaryInfo td").click(function () {
             $('#detailProgress').show();
-            var tdSeq = $(this).find("td").index($(this));
-            var trSeq = $(this).parent().find("tr").index($(this).parent());
-            //alert("第" + (trSeq) + "行，第" + (tdSeq + 1) + "列");
+            var trSeq = $(this).parent().parent().find("tr").index($(this).parent());
+            //alert("第" + (trSeq) + "行");
             if(1) {
                 summaryName= summaryData[parseInt(trSeq)+1].seller_name;
                 summaryId = summaryData[parseInt(trSeq)+1].seller_id;
                 console.log(summaryName+"   "+summaryId)
                 $("#detailList").empty();
                 var detailCanshu ="user_name="+summaryName+"&user_id="+summaryId+"&start_num=0&total_num="+(detailPageNum+1).toString();
-
+                //alert(detailCanshu)
                 var allDetailPageNum = parseInt(summaryData[parseInt(trSeq)+1].publish_count / detailPageNum) + 1;
                 setDetialPage(document.getElementsByClassName("detailHolder")[0], allDetailPageNum, 1);
                 getDetail(detailCanshu)
@@ -209,15 +214,35 @@ function getDetail(canshu){
     $("#detailList").empty();
     $('#detailProgress').show();
     $.post("http://202.114.114.34:8878/yuqing/servlet_detail_information?"+canshu, function (detailRawData) {//初始详细页面数据
+
         //alert("http://202.114.114.34:8878/yuqing/servlet_detail_information?"+canshu)
         $('#detailProgress').hide();
         var detailData = JSON.parse(detailRawData);
         for (var i = 0; i < detailData.length; i++) {
+            var sellerName = detailData[i].seller_name;
+            if(sellerName.indexOf("系") != -1){
+                sellerName = sellerName.substring(5,sellerName.length)
+            }
+
+            var location = detailData[i].seller_location;
+            if(location.indexOf("易") != -1){
+                location = location.substring(6,location.length)
+            }
+
+            var tongchengImage = "";
+            if(detailData[i].image_url_address.length < 15){
+                tongchengImage = "http://202.114.114.34:8878/temp_imgs/tuniu.jpg";
+            }else{
+                tongchengImage = "http://202.114.114.34:8878/temp_imgs/travel/"+tuniuData[i].tuniu_id+".jpg";
+                //tongchengImage = detailData[i].image_url_address;
+            }
+
+
             var a = "<tr><td>" + i + "</td>" +//编号
                 //"<td><img src='../images/"+rd(1,20).toString()+".jpg' style='width: 50px;height: 44.5px'></td>" +//图片
                 "<td><img src="+detailData[i].image_url_address+" style='width: 50px;height: 44.5px'></td>" +//图片
-                "<td>" +  detailData[i].seller_location + "</td>" +//区域
-                "<td>" + detailData[i].seller_name + "</td>" +//卖家姓名
+                "<td>" +  location + "</td>" +//区域
+                "<td>" + sellerName + "</td>" +//卖家姓名
                 "<td>" + replacePos(detailData[i].full_phone_number) + "</td>" +//卖家手机号
                 "<td>" +  detailData[i].product_pub_time + "</td>" +//发布日期
                 "<td>" +  convertType(detailData[i].product_type) + "</td>" +//类别
