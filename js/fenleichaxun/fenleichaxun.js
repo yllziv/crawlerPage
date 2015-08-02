@@ -244,7 +244,7 @@ function getSummaryTable(topicType,canshu) {
         url = "http://202.114.114.34:8878/yuqing/servlet_query_by_condition?" + canshu;
     }
     $.post(url, function (bangbangRawData) {
-        alert(url)
+        //alert(url)
         $("#shclProgress").hide();
             //¸ü¸ÄliÑÕÉ«
         $(".topbar a").css("color","black");
