@@ -257,8 +257,8 @@ function getSummaryTable(topicType,canshu) {
             if(bangbangData[i].q_img_url.length < 10){
                 bangbangImage = "http://202.114.114.34:8878/temp_imgs/weibo.jpg";
             }else{
-                bangbangImage = "http://202.114.114.34:8878/temp_imgs/calss_query/"+bangbangData[i].q_id+".jpg";
-                //bangbangImage = bangbangData[i].q_img_url
+                //bangbangImage = "http://202.114.114.34:8878/temp_imgs/calss_query/"+bangbangData[i].q_id+".jpg";
+                bangbangImage = bangbangData[i].q_img_url
             }
 
             var bangbangContent = bangbangData[i].q_content;

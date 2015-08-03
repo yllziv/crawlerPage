@@ -215,7 +215,7 @@ function getDetail(canshu){
     $('#detailProgress').show();
     $.post("http://202.114.114.34:8878/yuqing/servlet_detail_information?"+canshu, function (detailRawData) {//初始详细页面数据
 
-        alert("http://202.114.114.34:8878/yuqing/servlet_detail_information?"+canshu)
+        //alert("http://202.114.114.34:8878/yuqing/servlet_detail_information?"+canshu)
         $('#detailProgress').hide();
         var detailData = JSON.parse(detailRawData);
         for (var i = 0; i < detailData.length; i++) {
@@ -233,8 +233,8 @@ function getDetail(canshu){
             if(detailData[i].image_url_address.length < 15){
                 tongchengImage = "http://202.114.114.34:8878/temp_imgs/weibo.jpg";
             }else{
-                tongchengImage = "http://202.114.114.34:8878/temp_imgs/xiaozang/"+detailData[i].tongcheng_id+".jpg";
-                //tongchengImage = detailData[i].image_url_address;
+                //tongchengImage = "http://202.114.114.34:8878/temp_imgs/xiaozang/"+detailData[i].tongcheng_id+".jpg";
+                tongchengImage = detailData[i].image_url_address;
             }
 
 

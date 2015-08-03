@@ -102,8 +102,8 @@ var getSummaryTable = function (canshu) {
             if(activeData[i].douban_img.length < 10){
                 bangbangImage = "http://202.114.114.34:8878/temp_imgs/douban.jpg";
             }else{
-                bangbangImage = "http://202.114.114.34:8878/temp_imgs/show/"+activeData[i].douban_id+".jpg";
-                //bangbangImage = activeData[i].douban_img
+                //bangbangImage = "http://202.114.114.34:8878/temp_imgs/show/"+activeData[i].douban_id+".jpg";
+                bangbangImage = activeData[i].douban_img
             }
 
             var a =

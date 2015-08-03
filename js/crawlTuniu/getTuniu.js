@@ -59,8 +59,8 @@ var getSummaryTable = function (canshu) {
             if(tuniuData[i].tuniu_img_url.length < 20){
                 tuniuImage = "http://202.114.114.34:8878/temp_imgs/tuniu.jpg";
             }else{
-                tuniuImage = "http://202.114.114.34:8878/temp_imgs/travel/"+tuniuData[i].tuniu_id+".jpg";
-                //tuniuImage = tuniuData[i].tuniu_img_url;
+                //tuniuImage = "http://202.114.114.34:8878/temp_imgs/travel/"+tuniuData[i].tuniu_id+".jpg";
+                tuniuImage = tuniuData[i].tuniu_img_url;
             }
             var a =
                 "<tr></tr><td style='height: 70px'>" + tuniuTitle +"</td>" +   //¾°µãÃû³Æ

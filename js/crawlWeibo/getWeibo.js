@@ -53,8 +53,8 @@ var getSummaryTable = function (canshu) {
             if(weiboData[i].image_url.length < 2){
                 weiboImage = "http://202.114.114.34:8878/temp_imgs/weibo.jpg";
             }else{
-                weiboImage =  "http://202.114.114.34:8878/temp_imgs/city_news/"+weiboData[i].weibo_id+".jpg";
-                //weiboImage =  weiboData[i].image_url
+                //weiboImage =  "http://202.114.114.34:8878/temp_imgs/city_news/"+weiboData[i].weibo_id+".jpg";
+                weiboImage =  weiboData[i].image_url
             }
             if(weiboData[i].weibo_title.length < 2 &&weiboData[i].weibo_content.length > 21){
                 weiboData[i].weibo_title = weiboData[i].weibo_content.substring(0,20)

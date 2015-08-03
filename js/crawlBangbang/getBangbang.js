@@ -53,8 +53,8 @@ var getSummaryTable = function (canshu) {
             if(bangbangData[i].bb_img_url.length < 10){
                 bangbangImage = "http://202.114.114.34:8878/temp_imgs/bangbang.jpg";
             }else{
-                bangbangImage = "http://202.114.114.34:8878/temp_imgs/people_living/"+bangbangData[i].bangbang_id+".jpg";
-                //bangbangImage = bangbangData[i].bb_img_url;
+                //bangbangImage = "http://202.114.114.34:8878/temp_imgs/people_living/"+bangbangData[i].bangbang_id+".jpg";
+                bangbangImage = bangbangData[i].bb_img_url;
             }
 
             var bangbangContent = bangbangData[i].bb_content;
