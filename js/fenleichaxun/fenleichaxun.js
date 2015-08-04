@@ -242,6 +242,7 @@ function getSummaryTable(topicType,canshu) {
         url = "http://202.114.114.34:8878/yuqing/servlet_query_by_condition?" + canshu;
     }
     $.post(url, function (bangbangRawData) {
+
         //alert(url)
         $("#shclProgress").hide();
             //更改li颜色
@@ -283,14 +284,14 @@ function getSummaryTable(topicType,canshu) {
                 case 13:sourcePage = "帮帮网";break;
             }
             var a =
-                "<tr></tr><td style='height: 70px'>" + bangbangData[i].q_title +"</td>" +   //新闻标题
-                "<td style='height: 70px'><img src= " + bangbangImage + " style='width: 50px;height: 44.5px'></td>" +   //图片
+                //"<tr></tr><td style='height: 70px'>" + bangbangData[i].q_title +"</td>" +   //新闻标题
+                "<tr></tr><td style='height: 70px'><img src= " + bangbangImage + " style='width: 50px;height: 44.5px'></td>" +   //图片
                 "<td style='height: 70px'>" + bangbangContent + "</td>" +   //新闻内容
                 "<td style='height: 70px'>" + bangbangData[i].q_pubTime+ "</td>" +   //发布时间
                 "<td style='height: 70px'>" + didian[parseInt(10*Math.random())]+ "</td>" +   //地点
                 "<td style='height: 70px'>" + sourcePage + "</td>" +   //来源
                 "<td style='height: 70px;color: red;font-size: 15px ; font-weight:bold;'>" + bangbangData[i].q_focus_num + "</td>" +   //关注度
-                "<td style='height: 70px'><a target='_blank' href = '" + "'>点击查看详情</a></td>" +    //详情
+                //"<td style='height: 70px'><a target='_blank' href = '" + "'>点击查看详情</a></td>" +    //详情
                 "<td style='height: 70px'>" + listTypeArray[bangbangData[i].q_topicType] + "</td>" +   //类别
                 "<td style='height: 70px'><select class='changeSelect' style='width:60px;height:20px;'><option>案件</option>" +
                 "<option>民生</option><option>人员</option><option>服务</option><option>管理</option>" +

@@ -45,6 +45,7 @@ var getSummaryTableWeibo = function (canshu) {
     $("#weiboList").empty();
     $("#shclProgress").show();
     $.post("http://202.114.114.34:8878/yuqing/servlet_weibo_information?"+canshu, function (weiboRawData) {//概要页面数据
+        //alert("http://202.114.114.34:8878/yuqing/servlet_weibo_information?"+canshu)
         $("#shclProgress").hide();
         var weiboData = JSON.parse(weiboRawData);
         for (var i = 1; i < weiboData.length; i++) {
