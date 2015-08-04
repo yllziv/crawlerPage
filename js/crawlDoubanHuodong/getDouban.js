@@ -9,7 +9,7 @@ var initDouban = function() {
         allPageNum = parseInt(weiboData[1].total_count/perPageNum)+1
         setPage(document.getElementsByClassName("activeHolder")[0],allPageNum,1);
         $('#shclProgress').shCircleLoader({color:"blue"});
-        getSummaryTable("douban_type=-1&order_type=0&start_num=1&total_num="+(perPageNum+1).toString());
+        getSummaryTableDouban("douban_type=-1&order_type=0&start_num=1&total_num="+(perPageNum+1).toString());
     });
 }
 //获得某一范围随机数
@@ -85,10 +85,10 @@ var getInformation = function () {
     orderType = activeClass.toString();
 
     var canshu = "douban_type="+activeClass.toString()+"&order_type="+oderType.toString()+"&start_num=1&total_num="+(perPageNum+1).toString();
-    getSummaryTable(canshu)
+    getSummaryTableDouban(canshu)
 }
 
-var getSummaryTable = function (canshu) {
+var getSummaryTableDouban = function (canshu) {
     $("#activeList").empty();
     $("#shclProgress").show();
     $.post("http://202.114.114.34:8878/yuqing/servlet_douban_information?" + canshu, function (activeRawData) {//概要页面数据
@@ -133,7 +133,7 @@ var getSummaryTable = function (canshu) {
 
 
 function updatePage(inx){
-    getSummaryTable("douban_type="+orderType+"&order_type="+activeType+"&start_num="+((inx-1)*perPageNum+1).toString()+"&total_num="+(perPageNum+1).toString());
+    getSummaryTableDouban("douban_type="+orderType+"&order_type="+activeType+"&start_num="+((inx-1)*perPageNum+1).toString()+"&total_num="+(perPageNum+1).toString());
 
     //setPage(document.getElementsByClassName("activeHolder")[0],allPageNum,1);
 }

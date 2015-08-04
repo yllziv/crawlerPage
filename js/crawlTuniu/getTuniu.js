@@ -8,7 +8,7 @@ var initDouban = function() {
         allPageNum = parseInt(weiboData[1].total_count/perPageNum)+1
         setPage(document.getElementsByClassName("activeHolder")[0],allPageNum,1);
         $('#shclProgress').shCircleLoader({color:"blue"});
-        getSummaryTable("order_type=0&start_num=1&total_num="+(perPageNum+1).toString());
+        getSummaryTableTuniu("order_type=0&start_num=1&total_num="+(perPageNum+1).toString());
     });
 }
 
@@ -35,10 +35,10 @@ var orderInformation = function () {
     }
     orderType = tuniuClass.toString();
     var canshu = "order_type="+orderType+"&start_num=1&total_num="+(perPageNum+1).toString();
-    getSummaryTable(canshu)
+    getSummaryTableTuniu(canshu)
 }
 
-var getSummaryTable = function (canshu) {
+var getSummaryTableTuniu = function (canshu) {
     $("#tuniuList").empty();
     $("#shclProgress").show();
     $.post("http://202.114.114.34:8878/yuqing/servlet_tuniu_information?" + canshu, function (tuniuRawData) {//概要页面数据
@@ -88,7 +88,7 @@ var getSummaryTable = function (canshu) {
 
 
 function updatePage(inx){
-    getSummaryTable("order_type="+orderType+"&start_num="+((inx-1)*perPageNum+1).toString()+"&total_num="+(perPageNum+1).toString());
+    getSummaryTableTuniu("order_type="+orderType+"&start_num="+((inx-1)*perPageNum+1).toString()+"&total_num="+(perPageNum+1).toString());
 }
 
 //container 容器，count 总页数 pageindex 当前页数

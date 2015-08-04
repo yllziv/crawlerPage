@@ -9,7 +9,7 @@ var initDouban = function() {
         allPageNum = parseInt(weiboData[1].total_count/perPageNum)+1
         setPage(document.getElementsByClassName("activeHolder")[0],allPageNum,1);
         $('#shclProgress').shCircleLoader({color:"blue"});
-        getSummaryTable("order_type=0&start_num=1&total_num="+(perPageNum+1).toString());
+        getSummaryTableFangwu("order_type=0&start_num=1&total_num="+(perPageNum+1).toString());
     });
 }
 
@@ -37,11 +37,11 @@ var getInformation = function () {
     }
     orderType = bangbangClass.toString();
     var canshu = "order_type="+orderType+"&start_num=1&total_num="+(perPageNum+1).toString();
-    getSummaryTable(canshu)
+    getSummaryTableFangwu(canshu)
 }
 
-var getSummaryTable = function (canshu) {
-    $("#bangbangList").empty();
+var getSummaryTableFangwu = function (canshu) {
+    $("#fangwuList").empty();
     $("#shclProgress").show();
     $.post("http://202.114.114.34:8878/yuqing/servlet_house_information?"+canshu, function (fangwuRawData) {//概要页面数据
         $("#shclProgress").hide();
@@ -73,16 +73,16 @@ var getSummaryTable = function (canshu) {
                 "<td style='height: 70px;color: red;font-size: 15px ; font-weight:bold;'>" + fangwuData[i].kiapantime_start + "</td>" +   //开盘时间
                 "<td style='height: 70px;'>" + fangwuData[i].house_telephone + "</td>" +   //联系电话
                 "<td style='height: 70px'><a target='_blank' href = '" + fangwuData[i].house_url + "'>点击查看详情</a></td>";    //详情
-            $("#bangbangList").append(a);
+            $("#fangwuList").append(a);
         }
         //鼠标移入该行和鼠标移除该行的事件
-        jQuery("#bangbangInfo tr:gt(0)").mouseover(function(){
+        jQuery("#fangwuInfo tr:gt(0)").mouseover(function(){
             jQuery(this).addClass("over");
         }).mouseout(function(){
             jQuery(this).removeClass("over");
         });
-        $("#bangbangInfo tr:gt(0)").bind("click",function(){
-            $("#bangbangInfo tr:gt(0)").removeClass("click");
+        $("#fangwuInfo tr:gt(0)").bind("click",function(){
+            $("#fangwuInfo tr:gt(0)").removeClass("click");
             $(this).addClass("click");
         });
     });
@@ -90,7 +90,7 @@ var getSummaryTable = function (canshu) {
 
 
 function updatePage(inx){
-    getSummaryTable("order_type="+orderType+"&start_num="+((inx-1)*perPageNum+1).toString()+"&total_num="+(perPageNum+1).toString());
+    getSummaryTableFangwu("order_type="+orderType+"&start_num="+((inx-1)*perPageNum+1).toString()+"&total_num="+(perPageNum+1).toString());
 }
 
 //container 容器，count 总页数 pageindex 当前页数
